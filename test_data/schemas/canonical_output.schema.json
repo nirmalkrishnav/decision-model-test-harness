@@ -1,0 +1,330 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:decision-model-test-harness:schema:canonical-output:0.1.0",
+  "title": "Canonical intent and entity output",
+  "description": "Model-independent contract for one annotated user turn: exactly one primary intent plus normalized entities. Used for both ground truth and normalized model predictions. Model- or provider-specific data (probabilities, scores, reasoning, token usage, latency, raw responses) is out of scope and belongs in a separate execution-result schema. Vocabularies and patterns mirror test_data/taxonomy/entities.yaml and intents.yaml (spec_version 0.1.0).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "test_case_id",
+    "intent",
+    "entities"
+  ],
+  "properties": {
+    "test_case_id": {
+      "description": "Stable identifier of the test case (for example CPG-001). Multi-turn cases share one test_case_id and are distinguished by turn_index.",
+      "type": "string",
+      "maxLength": 64,
+      "pattern": "^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+$"
+    },
+    "turn_index": {
+      "description": "1-based index of the user turn being annotated within a multi-turn conversation. Counts user turns only. Omit for single-turn cases.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "intent": {
+      "description": "Exactly one primary intent from test_data/taxonomy/intents.yaml.",
+      "type": "string",
+      "enum": [
+        "performance_analysis",
+        "promotion_analysis",
+        "pricing_analysis",
+        "distribution_analysis",
+        "assortment_analysis",
+        "comparison",
+        "trend_analysis",
+        "forecast",
+        "recommendation",
+        "unsupported"
+      ]
+    },
+    "entities": {
+      "$ref": "#/$defs/entities"
+    }
+  },
+  "allOf": [
+    {
+      "$comment": "Unsupported turns carry no entities (entities.yaml global_rules.grounding).",
+      "if": {
+        "properties": {
+          "intent": {
+            "const": "unsupported"
+          }
+        },
+        "required": [
+          "intent"
+        ]
+      },
+      "then": {
+        "properties": {
+          "entities": {
+            "additionalProperties": {
+              "maxItems": 0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "text_value": {
+      "description": "Open-class canonical name: non-empty, no leading, trailing or repeated whitespace.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^\\S+(?: \\S+)*$"
+    },
+    "entities": {
+      "description": "All entity keys are always present. A not-stated entity is the empty array []; null and empty strings are invalid. Values are canonical, unique and in order of first mention.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "brand",
+        "manufacturer",
+        "product",
+        "category",
+        "sub_category",
+        "pack_size",
+        "pack_type",
+        "channel",
+        "retailer",
+        "geography",
+        "promotion_type",
+        "discount",
+        "date_range",
+        "metric"
+      ],
+      "properties": {
+        "brand": {
+          "description": "Consumer-facing product brand. Normalization: preserve.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/text_value"
+          }
+        },
+        "manufacturer": {
+          "description": "Company that makes or owns the brand (supplier or manufacturer). Normalization: preserve.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/text_value"
+          }
+        },
+        "product": {
+          "description": "A specific product or product line below brand level (brand plus variant, flavour or formulation), excluding pack size and pack type. Normalization: preserve.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/text_value"
+          }
+        },
+        "category": {
+          "description": "Top-level product category. Normalization: controlled_vocabulary.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "carbonated_soft_drinks",
+              "bottled_water",
+              "juice",
+              "functional_beverages",
+              "salty_snacks",
+              "confectionery",
+              "dairy",
+              "breakfast_cereal",
+              "household_care",
+              "personal_care"
+            ]
+          }
+        },
+        "sub_category": {
+          "description": "Segment within a category. Each value has exactly one parent category (documentation only). Normalization: controlled_vocabulary.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "cola",
+              "lemon_lime",
+              "fruit_soda",
+              "still_water",
+              "sparkling_water",
+              "flavored_water",
+              "orange_juice",
+              "apple_juice",
+              "juice_drinks",
+              "energy_drinks",
+              "sports_drinks",
+              "potato_chips",
+              "tortilla_chips",
+              "pretzels",
+              "popcorn",
+              "chocolate",
+              "sugar_confectionery",
+              "gum",
+              "yogurt",
+              "milk",
+              "cheese",
+              "ready_to_eat_cereal",
+              "hot_cereal",
+              "cereal_bars",
+              "laundry_detergent",
+              "dish_care",
+              "surface_cleaners",
+              "shampoo",
+              "body_wash",
+              "oral_care"
+            ]
+          }
+        },
+        "pack_size": {
+          "description": "Size of the sellable unit or multipack as stated (volume or weight, count x size, or pack count). Normalization: pack_size_format.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^(?:(?:[1-9][0-9]*x)?(?:0|[1-9][0-9]*)(?:[.][0-9]*[1-9])?(?:ml|cl|L|g|kg|oz|floz|lb)|[1-9][0-9]*pk)$"
+          }
+        },
+        "pack_type": {
+          "description": "Physical container or packaging format. Normalization: controlled_vocabulary.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "can",
+              "bottle",
+              "plastic_bottle",
+              "glass_bottle",
+              "carton",
+              "pouch",
+              "box",
+              "bag",
+              "jar",
+              "tub",
+              "sachet",
+              "multipack"
+            ]
+          }
+        },
+        "channel": {
+          "description": "Retail or trade channel. Normalization: controlled_vocabulary.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "grocery",
+              "mass_merchandise",
+              "convenience",
+              "club",
+              "drug",
+              "discount",
+              "ecommerce",
+              "foodservice"
+            ]
+          }
+        },
+        "retailer": {
+          "description": "Named retail customer or banner. Normalization: preserve.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/text_value"
+          }
+        },
+        "geography": {
+          "description": "Country, region, city or other named market area. Normalization: preserve.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/text_value"
+          }
+        },
+        "promotion_type": {
+          "description": "Promotion mechanic or tactic. Normalization: controlled_vocabulary.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "tpr",
+              "multi_buy",
+              "bogo",
+              "feature",
+              "display",
+              "coupon",
+              "loyalty",
+              "bundle",
+              "bonus_pack"
+            ]
+          }
+        },
+        "discount": {
+          "description": "Stated depth of a promotional price reduction, as a percentage or an absolute amount off. Normalization: discount_format.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^(?:(?:>=|<=|>|<)?(?:0|[1-9][0-9]*)(?:[.][0-9]*[1-9])?%|(?:0|[1-9][0-9]*)(?:[.][0-9]*[1-9])?%-(?:0|[1-9][0-9]*)(?:[.][0-9]*[1-9])?%|(?:>=|<=|>|<)?(?:[$]|[A-Z]{3} )(?:0|[1-9][0-9]*)(?:[.](?:0[1-9]|[1-9][0-9]))?)$"
+          }
+        },
+        "date_range": {
+          "description": "Time period requested, as stated (absolute or relative). Normalization: date_expression.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^(?:(?:FY)?[0-9]{4}(?:-(?:Q[1-4]|H[12]|W(?:0[1-9]|[1-4][0-9]|5[0-3])|(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01]))?))?(?:/(?:FY)?[0-9]{4}(?:-(?:Q[1-4]|H[12]|W(?:0[1-9]|[1-4][0-9]|5[0-3])|(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01]))?))?)?|(?:Q[1-4]|H[12])|(?:last|this|next) (?:week|month|quarter|half|year)|(?:last|next) (?:[2-9]|[1-9][0-9]+) (?:days|weeks|months|quarters|years)|(?:year|quarter|month|week) to date|same period last year|(?:(?:last|this|next) )?(?:spring|summer|autumn|winter|holiday season|back to school)|(?:spring|summer|autumn|winter|holiday season|back to school) [0-9]{4}|(?:january|february|march|april|may|june|july|august|september|october|november|december)|since (?:(?:FY)?[0-9]{4}(?:-(?:Q[1-4]|H[12]|W(?:0[1-9]|[1-4][0-9]|5[0-3])|(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01]))?))?|(?:january|february|march|april|may|june|july|august|september|october|november|december)))$"
+          }
+        },
+        "metric": {
+          "description": "Business measure requested. Generic values (sales, market_share, price, distribution, incremental_sales) are used when the user does not state a more specific basis; never resolve them to a more specific metric. Normalization: controlled_vocabulary.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "sales",
+              "sales_value",
+              "sales_volume",
+              "unit_sales",
+              "net_revenue",
+              "gross_profit",
+              "gross_margin",
+              "market_share",
+              "value_share",
+              "volume_share",
+              "sales_velocity",
+              "price",
+              "average_price",
+              "base_price",
+              "price_index",
+              "price_gap",
+              "price_elasticity",
+              "roi",
+              "promo_lift",
+              "incremental_sales",
+              "incremental_volume",
+              "incremental_value",
+              "baseline_sales",
+              "trade_spend",
+              "promo_depth",
+              "promo_frequency",
+              "distribution",
+              "numeric_distribution",
+              "weighted_distribution",
+              "store_count",
+              "out_of_stock_rate",
+              "sku_count",
+              "shelf_share"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

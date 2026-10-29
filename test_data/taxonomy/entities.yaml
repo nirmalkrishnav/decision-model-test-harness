@@ -1,0 +1,545 @@
+# Entity schema - CPG decision-model test harness (Phase 1 specification)
+#
+# Defines every entity that may be extracted, its datatype, nullability,
+# normalization strategy and extraction boundaries. The canonical output
+# contract (../schemas/canonical_output.schema.json) must stay consistent with
+# this file; scripts/validate_spec.py enforces that.
+#
+# All brands, manufacturers, products, retailers and geographies below are
+# fictional. Catalog attributes on reference values (manufacturer, category,
+# brand, sub_category, channel, level, parent) are AUTHORING AIDS ONLY: they
+# must never be used to infer an entity the user did not state.
+
+spec_version: "0.1.0"
+domain: consumer_packaged_goods
+
+# Machine-readable serialization contract for entity values in canonical output.
+serialization:
+  value_container: array
+  item_type: string
+  all_keys_required: true
+  empty_value: []
+  allow_json_null: false
+  allow_empty_string: false
+  unique_items: true
+  item_order: first_mention
+
+global_rules:
+  grounding:
+    - Extract a value only if it is explicitly stated in the current user turn, or established earlier in the conversation and carried forward by the multi-turn rules in annotation_guide.md.
+    - Never infer an entity from another entity. A brand does not imply its manufacturer or category, a product does not imply a category, a retailer does not imply a channel, a city does not imply its region or country, and a sub_category does not imply its category.
+    - Never add default filters the user did not state (current year, total market, home country, all channels).
+    - Extract from the whole effective request, including clauses that do not determine the primary intent, but not from text that belongs only to an unsupported action (for example an email recipient).
+    - First-person references ("we", "our brands", "my company") are not entity values.
+    - When the intent is unsupported, every entity is empty.
+  nullability:
+    - Every entity is nullable. "Not stated" is a valid and expected value.
+    - In canonical output every entity key is always present, and a not-stated entity is the empty list [].
+    - JSON null, the empty string "" and placeholder strings ("unknown", "n/a", "none", "all", "any", "total") are never valid values.
+    - An empty list means the user did not mention or restrict this entity. It does not mean "all values" or "zero".
+  normalization:
+    - Normalization changes surface form only and must preserve meaning. It never broadens, narrows, translates, converts units or resolves relative dates.
+    - The strategy for each entity is given by its normalization field (see normalization_strategies).
+    - Strip leading articles, possessives and surrounding punctuation ("the Coastal Region" -> Coastal Region, "FreshFizz's" -> FreshFizz).
+    - Unambiguous misspellings of registered names map to the canonical value ("Fresh Fiz" -> FreshFizz). A misspelling that could match more than one value is kept as written (open-class entities) or escalated (controlled entities).
+    - A controlled-vocabulary mention that matches no allowed value or alias is escalated as a taxonomy change request. It is never forced to the nearest value.
+    - Terms listed under ambiguous_terms are deliberately unmapped because they span several values. They are not extracted and are not escalated.
+  aliases:
+    - Aliases are matched case-insensitively. Underscores in a controlled value read as spaces (salty_snacks matches "salty snacks"), and regular English plurals are equivalent to the singular.
+    - When aliases overlap, the longest match wins ("share of shelf" -> shelf_share, not market_share).
+    - Words inside a matched proper name are not matched again as other entities. "WellCorner Pharmacy" is a retailer only (no drug channel), "Clearwave Home Care" is a manufacturer only (no household_care), "CarePlus Mint Toothpaste" yields no oral_care, and "ColaMax" or "DailyDairy" never yields cola or dairy. The only exception is the brand inside a product name (see brand.extract_when).
+    - Each alias maps to exactly one value across the whole taxonomy. The validator rejects collisions.
+    - Abbreviations are aliases only if listed (CSD, ACV, ROS). Unlisted abbreviations of controlled values are escalated.
+  casing:
+    - Open-class entities use the registered canonical spelling and casing (FreshFizz, MarketNest). Unregistered names keep the user's spelling, trimmed, with internal whitespace collapsed to single spaces.
+    - Controlled vocabularies use lowercase snake_case.
+    - pack_size units use the casing defined by its format (ml, cl, L, g, kg, oz, floz, lb, pk).
+    - In date_range, relative expressions and month names are lowercase, and the tokens Q, H, W and FY are uppercase.
+  units:
+    - pack_size keeps the unit the user stated. Never convert (0.5L stays 0.5L, 16oz stays 16oz).
+    - Number words become digits ("six-pack" -> 6pk, "half litre" -> 0.5L).
+    - Units of a measure ("in litres", "in dollars", "in cases") are not entity values.
+    - Currency appears only in absolute discount values (see percentages).
+  dates:
+    - Relative dates stay relative ("last quarter"). Never resolve them to calendar dates.
+    - Never add a year, quarter or month the user did not state ("Q1" stays Q1, "March" stays march).
+    - Absolute periods use ISO-style canonical forms (2025, 2025-Q1, 2025-H1, 2026-03, 2026-03-15, 2025-W07, FY2025). An explicit absolute range uses start/end (2025-01/2025-06).
+    - Period-over-period bases with no named period (YoY, MoM, "versus a year ago") are not date_range values. Explicitly named periods are ("this year versus last year" -> [this year, last year]).
+    - Time granularity words ("weekly", "by month", "monthly trend") are not date_range values.
+  percentages:
+    - A discount percentage is digits followed by % with no space (20%). A range is low%-high% (10%-20%), and thresholds use the prefixes >=, <=, > and < ("at least 20%" -> >=20%).
+    - An absolute discount uses $ or an ISO 4217 code followed by a space (EUR 2), with two decimals only when fractional ($0.50, never $1.00).
+    - Percentages that are not promotional discounts (share of 20%, a 5% price increase, growth above 10%) are not extracted.
+    - Promotion mechanics are never converted to percentages (BOGO is not 50%). Only stated depths are extracted ("half price" -> 50%).
+  multi_value:
+    - Every entity is a list holding all distinct values of that type in the effective request, in order of first mention.
+    - Conjunctions and enumerations ("MarketNest and Basketly", "feature and display") produce multiple values.
+    - Duplicate mentions, including different aliases of the same value, collapse to one canonical value.
+    - Values form a flat set per entity. The output does not record which value attaches to which other entity.
+    - Comparands in a comparison or temporal contrast are multiple values of the same entity.
+  exclusions:
+    - Excluded or negated values ("except Dollarden", "excluding cola", "not online") are not extracted.
+    - Breakdown dimensions ("by retailer", "which region"), universal quantifiers ("all retailers", "every channel") and ranking sizes ("top 5") are not extracted.
+    - Thresholds and scenario magnitudes that are not entity values ("price up 5%", "share above 20%", "packs over 1L") are not extracted.
+    - Words that only name an entity type or object type ("brands", "SKUs", "promotions", "stores") are not values.
+
+normalization_strategies:
+  preserve: >-
+    Open-class proper names. Map registered values and aliases
+    (case-insensitive) to the canonical spelling; keep unregistered names as
+    written (trimmed). Never translate, abbreviate or roll up to a parent.
+  controlled_vocabulary: >-
+    Closed lowercase snake_case set. Map the mention through the value label or
+    an alias; mentions outside the set are escalated, never approximated.
+  pack_size_format: >-
+    Compact size string defined by the entity's format pattern; units are
+    never converted.
+  discount_format: >-
+    Compact discount string defined by the entity's format pattern.
+  date_expression: >-
+    Canonical date expression defined by the entity's format pattern; relative
+    expressions stay relative and missing years are never added.
+
+# Groups used by the multi-turn rules (annotation_guide.md, MT-8 and MT-9):
+# a substitution cue with a new value replaces every entity in that value's
+# group, and any new product_scope value replaces the whole product_scope group.
+entity_groups:
+  product_scope: [manufacturer, brand, product, category, sub_category]
+  pack: [pack_size, pack_type]
+  market_scope: [channel, retailer, geography]
+  promotion: [promotion_type, discount]
+  time: [date_range]
+  measure: [metric]
+
+entities:
+  brand:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: preserve
+    description: Consumer-facing product brand.
+    extract_when:
+      - A brand name is stated, including possessive, differently spaced or unambiguously misspelled forms.
+      - A brand name appears literally inside a stated product name ("FreshFizz Zero" also yields brand FreshFizz).
+      - A brand is established in conversation context under the multi-turn rules.
+    do_not_extract_when:
+      - The brand would only be implied by a manufacturer, category or a product name that does not contain the brand word.
+      - Brands are referred to generically ("which brands", "top 5 brands", "our brands").
+      - The brand is excluded or negated.
+    examples: [FreshFizz, CrunchCo]
+    reference_values:
+      - {value: FreshFizz, aliases: [Fresh Fizz], manufacturer: Silverleaf Beverages, category: carbonated_soft_drinks}
+      - {value: ColaMax, aliases: [Cola Max], manufacturer: Northpeak Drinks Co., category: carbonated_soft_drinks}
+      - {value: PureSpring, aliases: [Pure Spring], manufacturer: Silverleaf Beverages, category: bottled_water}
+      - {value: SnackJoy, aliases: [Snack Joy], manufacturer: Larkfield Snacks, category: salty_snacks}
+      - {value: CrunchCo, aliases: [Crunch Co], manufacturer: Valemont Foods, category: salty_snacks}
+      - {value: DailyDairy, aliases: [Daily Dairy], manufacturer: Valemont Foods, category: dairy}
+      - {value: MorningGrain, aliases: [Morning Grain], manufacturer: Valemont Foods, category: breakfast_cereal}
+      - {value: HomeClean, aliases: [Home Clean], manufacturer: Clearwave Home Care, category: household_care}
+      - {value: BrightWash, aliases: [Bright Wash], manufacturer: Stonebrook Household, category: household_care}
+      - {value: CarePlus, aliases: [Care Plus], manufacturer: Clearwave Home Care, category: personal_care}
+
+  manufacturer:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: preserve
+    description: Company that makes or owns the brand (supplier or manufacturer).
+    extract_when:
+      - A manufacturer or supplier name is stated.
+    do_not_extract_when:
+      - The manufacturer would only be implied by a brand or product.
+      - The user refers to their own company ("we", "our company").
+      - Manufacturers are referred to generically ("competitors", "suppliers", "private label").
+    examples: [Valemont Foods, Northpeak Drinks Co.]
+    reference_values:
+      - {value: Silverleaf Beverages, aliases: [Silverleaf]}
+      - {value: Northpeak Drinks Co., aliases: [Northpeak, Northpeak Drinks]}
+      - {value: Valemont Foods, aliases: [Valemont]}
+      - {value: Larkfield Snacks, aliases: [Larkfield]}
+      - {value: Clearwave Home Care, aliases: [Clearwave]}
+      - {value: Stonebrook Household, aliases: [Stonebrook]}
+
+  product:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: preserve
+    description: >-
+      A specific product or product line below brand level (brand plus variant,
+      flavour or formulation), excluding pack size and pack type.
+    extract_when:
+      - A brand-plus-variant name is stated ("FreshFizz Zero", "CrunchCo Sea Salt"). Pack size and pack type are extracted separately.
+    do_not_extract_when:
+      - Only a brand is stated (that is a brand, not a product).
+      - Variant words appear without a brand ("zero sugar drinks", "sea salt chips").
+      - Products are referred to generically ("SKUs", "items", "new products").
+    examples: [FreshFizz Zero, CrunchCo Sea Salt]
+    reference_values:
+      - {value: FreshFizz Zero, aliases: [FreshFizz Zero Sugar], brand: FreshFizz, sub_category: cola}
+      - {value: FreshFizz Original, aliases: [FreshFizz Classic], brand: FreshFizz, sub_category: cola}
+      - {value: FreshFizz Lemon, aliases: [], brand: FreshFizz, sub_category: lemon_lime}
+      - {value: ColaMax Cherry, aliases: [], brand: ColaMax, sub_category: cola}
+      - {value: PureSpring Sparkling Lime, aliases: [], brand: PureSpring, sub_category: sparkling_water}
+      - {value: CrunchCo Sea Salt, aliases: [], brand: CrunchCo, sub_category: potato_chips}
+      - {value: CrunchCo BBQ, aliases: [CrunchCo Barbecue], brand: CrunchCo, sub_category: potato_chips}
+      - {value: SnackJoy Tortilla Rounds, aliases: [], brand: SnackJoy, sub_category: tortilla_chips}
+      - {value: DailyDairy Greek Vanilla, aliases: [], brand: DailyDairy, sub_category: yogurt}
+      - {value: MorningGrain Oat Crunch, aliases: [], brand: MorningGrain, sub_category: ready_to_eat_cereal}
+      - {value: HomeClean Multi-Surface Spray, aliases: [], brand: HomeClean, sub_category: surface_cleaners}
+      - {value: BrightWash Pods, aliases: [], brand: BrightWash, sub_category: laundry_detergent}
+      - {value: CarePlus Mint Toothpaste, aliases: [], brand: CarePlus, sub_category: oral_care}
+
+  category:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: controlled_vocabulary
+    description: Top-level product category.
+    extract_when:
+      - A category label or listed alias is stated.
+    do_not_extract_when:
+      - The category would only be implied by a brand, product or sub_category.
+      - The term is listed in ambiguous_terms.
+    examples: [carbonated_soft_drinks, salty_snacks]
+    ambiguous_terms: [soft drinks, drinks, beverages, snacks, chips, food, groceries]
+    allowed_values:
+      - {value: carbonated_soft_drinks, aliases: [CSD, soda, fizzy drinks, carbonated drinks], description: "Carbonated soft drinks."}
+      - {value: bottled_water, aliases: [water, packaged water], description: "Still, sparkling and flavored packaged water."}
+      - {value: juice, aliases: [fruit juice], description: "Fruit juices and juice drinks."}
+      - {value: functional_beverages, aliases: [functional drinks], description: "Energy and sports drinks."}
+      - {value: salty_snacks, aliases: [savory snacks, savoury snacks], description: "Chips, pretzels, popcorn and similar salty snacks."}
+      - {value: confectionery, aliases: [candy, sweets, confections], description: "Chocolate, sugar confectionery and gum."}
+      - {value: dairy, aliases: [dairy products], description: "Yogurt, milk and cheese."}
+      - {value: breakfast_cereal, aliases: [cereal], description: "Ready-to-eat and hot cereals and cereal bars."}
+      - {value: household_care, aliases: [household cleaning, home care, household products], description: "Laundry, dish and surface cleaning products."}
+      - {value: personal_care, aliases: [toiletries, personal hygiene], description: "Hair, body and oral care products."}
+
+  sub_category:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: controlled_vocabulary
+    description: Segment within a category. Each value has exactly one parent category (documentation only).
+    extract_when:
+      - A sub-category label or listed alias is stated.
+    do_not_extract_when:
+      - The sub-category would only be implied by a brand or product.
+      - The term is a category-level term (extract the category instead) or is listed in ambiguous_terms.
+    examples: [cola, energy_drinks]
+    ambiguous_terms: [chips, flavored drinks, bars]
+    allowed_values:
+      - {value: cola, aliases: [], parent: carbonated_soft_drinks, description: "Cola-flavored carbonated soft drinks."}
+      - {value: lemon_lime, aliases: [lemon-lime], parent: carbonated_soft_drinks, description: "Lemon-lime carbonated soft drinks."}
+      - {value: fruit_soda, aliases: [flavored soda, flavoured soda], parent: carbonated_soft_drinks, description: "Other fruit-flavored carbonated soft drinks."}
+      - {value: still_water, aliases: [], parent: bottled_water, description: "Unflavored still water."}
+      - {value: sparkling_water, aliases: [carbonated water, seltzer, fizzy water], parent: bottled_water, description: "Unflavored or lightly flavored sparkling water."}
+      - {value: flavored_water, aliases: [flavoured water], parent: bottled_water, description: "Flavored still water."}
+      - {value: orange_juice, aliases: [OJ], parent: juice, description: "Orange juice."}
+      - {value: apple_juice, aliases: [], parent: juice, description: "Apple juice."}
+      - {value: juice_drinks, aliases: [nectar], parent: juice, description: "Juice drinks and nectars with less than full juice content."}
+      - {value: energy_drinks, aliases: [energy], parent: functional_beverages, description: "Energy drinks."}
+      - {value: sports_drinks, aliases: [isotonic drinks], parent: functional_beverages, description: "Sports and isotonic drinks."}
+      - {value: potato_chips, aliases: [crisps, potato crisps], parent: salty_snacks, description: "Potato chips."}
+      - {value: tortilla_chips, aliases: [], parent: salty_snacks, description: "Tortilla chips."}
+      - {value: pretzels, aliases: [], parent: salty_snacks, description: "Pretzels."}
+      - {value: popcorn, aliases: [], parent: salty_snacks, description: "Ready-to-eat and microwave popcorn."}
+      - {value: chocolate, aliases: [], parent: confectionery, description: "Chocolate confectionery."}
+      - {value: sugar_confectionery, aliases: [gummies, hard candy], parent: confectionery, description: "Non-chocolate candy."}
+      - {value: gum, aliases: [chewing gum], parent: confectionery, description: "Chewing gum."}
+      - {value: yogurt, aliases: [yoghurt], parent: dairy, description: "Yogurt."}
+      - {value: milk, aliases: [], parent: dairy, description: "Liquid milk."}
+      - {value: cheese, aliases: [], parent: dairy, description: "Cheese."}
+      - {value: ready_to_eat_cereal, aliases: [RTE cereal, cold cereal], parent: breakfast_cereal, description: "Ready-to-eat cereal."}
+      - {value: hot_cereal, aliases: [oatmeal, porridge], parent: breakfast_cereal, description: "Hot cereal."}
+      - {value: cereal_bars, aliases: [breakfast bars, granola bars], parent: breakfast_cereal, description: "Cereal and granola bars."}
+      - {value: laundry_detergent, aliases: [laundry, detergent], parent: household_care, description: "Laundry detergent in any format."}
+      - {value: dish_care, aliases: [dishwashing, dish soap], parent: household_care, description: "Hand and machine dishwashing products."}
+      - {value: surface_cleaners, aliases: [all-purpose cleaner, multi-surface cleaner], parent: household_care, description: "Surface and all-purpose cleaners."}
+      - {value: shampoo, aliases: [], parent: personal_care, description: "Shampoo."}
+      - {value: body_wash, aliases: [shower gel], parent: personal_care, description: "Body wash and shower gel."}
+      - {value: oral_care, aliases: [toothpaste, oral hygiene], parent: personal_care, description: "Toothpaste and other oral care."}
+
+  pack_size:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: pack_size_format
+    description: Size of the sellable unit or multipack as stated (volume or weight, count x size, or pack count).
+    extract_when:
+      - A container size, multipack configuration or pack count is stated with a number ("500ml", "6 x 330ml", "12-pack").
+    do_not_extract_when:
+      - Size words without a number ("large packs", "single-serve", "family size").
+      - Size thresholds or ranges ("packs over 1L").
+      - Pack material or format words (extract pack_type instead).
+    examples: ["500ml", "6x330ml"]
+    format:
+      pattern: '^(?:(?:[1-9][0-9]*x)?(?:0|[1-9][0-9]*)(?:[.][0-9]*[1-9])?(?:ml|cl|L|g|kg|oz|floz|lb)|[1-9][0-9]*pk)$'
+      canonical_rules:
+        - No space between the number and the unit.
+        - Allowed units are ml, cl, L, g, kg, oz, floz and lb, with exactly this casing. A pack count alone uses pk.
+        - A multipack is <count>x<size><unit> (6x330ml), and a pack count with no unit size is <count>pk (12pk).
+        - Use a decimal point, no trailing zeros, no thousands separators and a leading zero for values below one (0.5L).
+        - Never convert units.
+      examples: ["500ml", "330ml", "2L", "1.5L", "0.5L", "6x330ml", "24x500ml", "12pk", "12floz", "16oz", "150g", "1kg"]
+      counter_examples: ["500 ml", "500ML", "2l", "2 L", "1.50L", ".5L", "6 x 330ml", "6X330ml", "12-pack", "six-pack", "0500ml", "12 oz", "12fl oz"]
+      normalization_examples:
+        - {input: "500 ml", output: "500ml"}
+        - {input: "2 litre", output: "2L"}
+        - {input: "1.5 liters", output: "1.5L"}
+        - {input: "half litre", output: "0.5L"}
+        - {input: "6 x 330 ml", output: "6x330ml"}
+        - {input: "12-pack", output: "12pk"}
+        - {input: "six-pack", output: "6pk"}
+        - {input: "12 fl oz", output: "12floz"}
+        - {input: "1.50L", output: "1.5L"}
+
+  pack_type:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: controlled_vocabulary
+    description: Physical container or packaging format.
+    extract_when:
+      - A container or packaging word is stated ("cans", "PET bottles", "pouches").
+    do_not_extract_when:
+      - The pack type would only be implied by a pack size or product.
+      - Packaging is referred to generically ("packs", "pack formats").
+    examples: [can, plastic_bottle]
+    ambiguous_terms: [pack, packs, packaging, container]
+    allowed_values:
+      - {value: can, aliases: [tin], description: "Metal can."}
+      - {value: bottle, aliases: [], description: "Bottle whose material is not stated."}
+      - {value: plastic_bottle, aliases: [PET, PET bottle], description: "Plastic (PET) bottle."}
+      - {value: glass_bottle, aliases: [glass], description: "Glass bottle."}
+      - {value: carton, aliases: [], description: "Paperboard carton."}
+      - {value: pouch, aliases: [stand-up pouch], description: "Flexible pouch."}
+      - {value: box, aliases: [], description: "Rigid box or case."}
+      - {value: bag, aliases: [], description: "Flexible bag."}
+      - {value: jar, aliases: [], description: "Jar."}
+      - {value: tub, aliases: [], description: "Tub."}
+      - {value: sachet, aliases: [], description: "Single-use sachet."}
+      - {value: multipack, aliases: [multi-pack], description: "Multipack described as such without a specific configuration."}
+
+  channel:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: controlled_vocabulary
+    description: Retail or trade channel.
+    extract_when:
+      - A channel label or listed alias is stated ("supermarkets", "c-stores", "online").
+    do_not_extract_when:
+      - The channel would only be implied by a retailer.
+      - Channels are referred to generically ("all channels", "by channel").
+    examples: [grocery, convenience]
+    ambiguous_terms: [stores, retail, retailers, offline, modern trade, traditional trade]
+    allowed_values:
+      - {value: grocery, aliases: [supermarket, grocery store, grocer, food retail], description: "Supermarkets and grocery stores."}
+      - {value: mass_merchandise, aliases: [mass, mass merch, mass merchandiser, hypermarket, supercenter], description: "Mass merchandisers and hypermarkets."}
+      - {value: convenience, aliases: [c-store, convenience store, forecourt, gas station], description: "Convenience stores and forecourts."}
+      - {value: club, aliases: [club store, warehouse club, cash and carry], description: "Warehouse clubs and cash-and-carry."}
+      - {value: drug, aliases: [pharmacy, drugstore, drug store, chemist], description: "Drug stores and pharmacies."}
+      - {value: discount, aliases: [discounter, dollar store, hard discount, hard discounter], description: "Discount and dollar stores."}
+      - {value: ecommerce, aliases: [e-commerce, online, internet retail, ecom], description: "Online retail."}
+      - {value: foodservice, aliases: [food service, on-premise, on premise, away from home, out of home], description: "Restaurants, cafes and other away-from-home outlets."}
+
+  retailer:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: preserve
+    description: Named retail customer or banner.
+    extract_when:
+      - A retailer or banner name is stated.
+    do_not_extract_when:
+      - Retailers are referred to generically ("all retailers", "key accounts", "which retailer").
+      - The retailer is excluded or negated.
+    examples: [MarketNest, Basketly]
+    reference_values:
+      - {value: MarketNest, aliases: [Market Nest], channel: grocery}
+      - {value: Basketly, aliases: [], channel: mass_merchandise}
+      - {value: QuickNook, aliases: [Quick Nook], channel: convenience}
+      - {value: Crateway Wholesale, aliases: [Crateway], channel: club}
+      - {value: WellCorner Pharmacy, aliases: [WellCorner], channel: drug}
+      - {value: CartCloud, aliases: [], channel: ecommerce}
+      - {value: Dollarden, aliases: [], channel: discount}
+
+  geography:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: preserve
+    description: Country, region, city or other named market area.
+    extract_when:
+      - A named country, region, city or market area is stated.
+      - A place established in context is referenced ("there") under the multi-turn rules.
+    do_not_extract_when:
+      - The geography would only be implied by a retailer or by another geography (a city does not imply its region).
+      - Geography is referred to generically ("which region", "by region", "nationally", "all markets").
+    examples: [Northland, Coastal Region]
+    reference_values:
+      - {value: Northland, aliases: [], level: country}
+      - {value: Southmere, aliases: [], level: country}
+      - {value: Coastal Region, aliases: [Coastal], level: region, parent: Northland}
+      - {value: Highlands Region, aliases: [Highlands], level: region, parent: Northland}
+      - {value: Metro Region, aliases: [Metro], level: region, parent: Southmere}
+      - {value: Port Amberly, aliases: [], level: city, parent: Coastal Region}
+      - {value: Lakeshire, aliases: [], level: city, parent: Highlands Region}
+      - {value: Eastvale, aliases: [], level: city, parent: Metro Region}
+
+  promotion_type:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: controlled_vocabulary
+    description: Promotion mechanic or tactic.
+    extract_when:
+      - A promotion mechanic label or listed alias is stated ("TPR", "BOGO", "feature and display").
+      - A quantity price point is stated ("2 for $5", "3 for 2"), which is multi_buy.
+    do_not_extract_when:
+      - Promotions are referred to generically ("promotions", "deals", "offers", "mechanic").
+      - The term is listed in ambiguous_terms.
+    examples: [tpr, bogo]
+    ambiguous_terms: [promotion, promo, deal, offer, price cut, special]
+    allowed_values:
+      - {value: tpr, aliases: [temporary price reduction, temporary price cut, price promotion, price promo, price-off], description: "Time-limited reduction of the shelf price."}
+      - {value: multi_buy, aliases: [multibuy, multi-buy, multi-save, volume deal, mix and match], description: "Quantity-based offer such as 2 for $5 or 3 for 2."}
+      - {value: bogo, aliases: [buy one get one, buy one get one free, BOGOF, 2 for 1, two for one], description: "Buy one get one free."}
+      - {value: feature, aliases: [feature ad, circular, flyer, leaflet, weekly ad], description: "Advertised feature in a circular, flyer or digital ad."}
+      - {value: display, aliases: [in-store display, end cap, endcap, gondola end, secondary display], description: "Secondary in-store display."}
+      - {value: coupon, aliases: [voucher, digital coupon, e-coupon], description: "Paper or digital coupon."}
+      - {value: loyalty, aliases: [loyalty offer, member price, member deal, rewards offer], description: "Loyalty-program or member-only offer."}
+      - {value: bundle, aliases: [bundle deal, cross-promotion, meal deal], description: "Offer combining different products."}
+      - {value: bonus_pack, aliases: [extra free, free volume, banded pack], description: "Extra product at the same price."}
+
+  discount:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: discount_format
+    description: Stated depth of a promotional price reduction, as a percentage or an absolute amount off.
+    extract_when:
+      - The magnitude of a promotional price reduction is stated as a percentage, amount off, range or threshold ("20% off", "$1 off", "at least 20%").
+    do_not_extract_when:
+      - The percentage is not a promotional discount (price increases, shares, margins, growth).
+      - A multi-buy price point is stated ("2 for $5"); extract promotion_type multi_buy only.
+      - A discount is mentioned without a magnitude ("discounted", "on deal").
+    examples: ["20%", "$1"]
+    format:
+      pattern: '^(?:(?:>=|<=|>|<)?(?:0|[1-9][0-9]*)(?:[.][0-9]*[1-9])?%|(?:0|[1-9][0-9]*)(?:[.][0-9]*[1-9])?%-(?:0|[1-9][0-9]*)(?:[.][0-9]*[1-9])?%|(?:>=|<=|>|<)?(?:[$]|[A-Z]{3} )(?:0|[1-9][0-9]*)(?:[.](?:0[1-9]|[1-9][0-9]))?)$'
+      canonical_rules:
+        - A percentage is digits followed by % with no space, with no trailing zeros after a decimal point (12.5%).
+        - A range is low%-high% with no spaces (10%-20%).
+        - Thresholds use the prefixes >=, <=, > and < with no space (>=20%).
+        - An absolute amount uses $ or an ISO 4217 code followed by a space (EUR 2), with exactly two decimals when fractional ($0.50) and none otherwise ($1).
+        - Non-dollar currency symbols become ISO codes (euro sign -> EUR, pound sign -> GBP). An amount with no stated currency is escalated.
+      examples: ["20%", "25%", "12.5%", ">=20%", "<30%", "10%-20%", "$1", "$0.50", "EUR 2", "GBP 1.50"]
+      counter_examples: ["20 %", "20 percent", "0.2", "20%-", "10-20%", "$1.00", "$.50", "$0.5", "1 dollar", "EUR2", "eur 2", "=> 20%"]
+      normalization_examples:
+        - {input: "20 percent off", output: "20%"}
+        - {input: "20% off", output: "20%"}
+        - {input: "at least 20%", output: ">=20%"}
+        - {input: "up to 30% off", output: "<=30%"}
+        - {input: "between 10 and 20 percent off", output: "10%-20%"}
+        - {input: "half price", output: "50%"}
+        - {input: "$1 off", output: "$1"}
+        - {input: "$1.00 off", output: "$1"}
+        - {input: "\u20ac2 off", output: "EUR 2"}
+        - {input: "\u00a31.50 off", output: "GBP 1.50"}
+
+  date_range:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: date_expression
+    description: Time period requested, as stated (absolute or relative).
+    extract_when:
+      - An explicit time period is stated (absolute period, relative period, season, month or since-expression).
+      - Each explicitly named period in a temporal contrast is a separate value.
+    do_not_extract_when:
+      - No period is stated (never default to "this year" or "latest").
+      - Only a period-over-period basis is stated (YoY, MoM, "versus a year ago").
+      - Only a time granularity is stated ("weekly", "by month").
+    examples: ["last quarter", "2025-Q1"]
+    format:
+      pattern: '^(?:(?:FY)?[0-9]{4}(?:-(?:Q[1-4]|H[12]|W(?:0[1-9]|[1-4][0-9]|5[0-3])|(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01]))?))?(?:/(?:FY)?[0-9]{4}(?:-(?:Q[1-4]|H[12]|W(?:0[1-9]|[1-4][0-9]|5[0-3])|(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01]))?))?)?|(?:Q[1-4]|H[12])|(?:last|this|next) (?:week|month|quarter|half|year)|(?:last|next) (?:[2-9]|[1-9][0-9]+) (?:days|weeks|months|quarters|years)|(?:year|quarter|month|week) to date|same period last year|(?:(?:last|this|next) )?(?:spring|summer|autumn|winter|holiday season|back to school)|(?:spring|summer|autumn|winter|holiday season|back to school) [0-9]{4}|(?:january|february|march|april|may|june|july|august|september|october|november|december)|since (?:(?:FY)?[0-9]{4}(?:-(?:Q[1-4]|H[12]|W(?:0[1-9]|[1-4][0-9]|5[0-3])|(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01]))?))?|(?:january|february|march|april|may|june|july|august|september|october|november|december)))$'
+      canonical_rules:
+        - Absolute periods are YYYY, YYYY-Qn, YYYY-Hn, YYYY-MM, YYYY-MM-DD or YYYY-Wnn. Fiscal periods are prefixed FY (FY2025, FY2025-Q2).
+        - An explicit absolute range is start/end (2025-01/2025-06).
+        - A quarter or half without a year stays Q1..Q4 or H1..H2, and a month without a year is its lowercase name (march). Never add a year.
+        - Relative periods are (last|this|next) (week|month|quarter|half|year), (last|next) N (days|weeks|months|quarters|years) with N >= 2, (year|quarter|month|week) to date, or same period last year.
+        - Seasons are spring, summer, autumn, winter, holiday season or back to school, optionally preceded by last/this/next or followed by a four-digit year.
+        - A since-expression is "since" followed by an absolute period or a month name.
+      examples: ["2025", "2025-Q1", "2025-H1", "2026-03", "2026-03-15", "2025-W07", "FY2025", "FY2025-Q2", "2025-01/2025-06", "Q1", "H2", "last quarter", "this year", "next month", "last 12 months", "last 4 weeks", "year to date", "same period last year", "holiday season", "last summer", "summer 2025", "march", "since january", "since 2025-Q3"]
+      counter_examples: ["Q1 2025", "2025 Q1", "YTD", "L12M", "last 1 months", "last 12 month", "March", "2025-13", "2025-Q5", "previous quarter", "fall", "03/2026", "Last Quarter", "past 12 months"]
+      normalization_examples:
+        - {input: "Q1 2025", output: "2025-Q1"}
+        - {input: "first half of 2025", output: "2025-H1"}
+        - {input: "March 2026", output: "2026-03"}
+        - {input: "March", output: "march"}
+        - {input: "fiscal 2025", output: "FY2025"}
+        - {input: "January to June 2025", output: "2025-01/2025-06"}
+        - {input: "YTD", output: "year to date"}
+        - {input: "MTD", output: "month to date"}
+        - {input: "L12M", output: "last 12 months"}
+        - {input: "past 12 months", output: "last 12 months"}
+        - {input: "trailing twelve months", output: "last 12 months"}
+        - {input: "previous quarter", output: "last quarter"}
+        - {input: "last fall", output: "last autumn"}
+        - {input: "the holidays", output: "holiday season"}
+        - {input: "same time last year", output: "same period last year"}
+        - {input: "since January", output: "since january"}
+
+  metric:
+    type: string
+    multi_value: true
+    nullable: true
+    normalization: controlled_vocabulary
+    description: >-
+      Business measure requested. Generic values (sales, market_share, price,
+      distribution, incremental_sales) are used when the user does not state a
+      more specific basis; never resolve them to a more specific metric.
+    extract_when:
+      - A measure label or listed alias is stated ("ROI", "value share", "ACV").
+      - The question unambiguously asks for a countable measure ("how many stores" -> store_count, "how many SKUs" -> sku_count).
+    do_not_extract_when:
+      - The term is listed in ambiguous_terms (vague performance words, change words such as growth or decline).
+      - The measure is only a breakdown or ranking basis that is not stated ("top brands" with no measure).
+      - A more specific metric is not stated (do not turn "sales" into sales_value).
+    examples: [roi, market_share]
+    ambiguous_terms: [performance, numbers, results, figures, KPIs, growth, decline, change, trend, pay back, payback, effectiveness, doing]
+    allowed_values:
+      - {value: sales, aliases: [sell-out, sellout, offtake], description: "Sales with no stated basis."}
+      - {value: sales_value, aliases: [value sales, dollar sales, retail sales value], description: "Sales in currency."}
+      - {value: sales_volume, aliases: [volume, volume sales, volume sold, litres sold, liters sold, tonnage], description: "Sales in volume units (litres, kilograms, cases)."}
+      - {value: unit_sales, aliases: [units, units sold, packs sold], description: "Sales in sellable units."}
+      - {value: net_revenue, aliases: [revenue, net sales, NR], description: "Manufacturer revenue net of trade spend and allowances."}
+      - {value: gross_profit, aliases: [profit, GP], description: "Gross profit in currency."}
+      - {value: gross_margin, aliases: [margin, GM, margin percentage], description: "Gross profit as a percentage of revenue."}
+      - {value: market_share, aliases: [share, share of market], description: "Market share with no stated basis."}
+      - {value: value_share, aliases: [dollar share, share of value], description: "Market share in currency terms."}
+      - {value: volume_share, aliases: [share of volume], description: "Market share in volume terms."}
+      - {value: sales_velocity, aliases: [velocity, rate of sale, ROS, sales per store, sales per point of distribution, SPPD], description: "Sales per store or per point of distribution."}
+      - {value: price, aliases: [pricing], description: "Price with no stated basis."}
+      - {value: average_price, aliases: [average selling price, ASP, avg price, average unit price, price per unit, unit price, price per litre, price per liter, price per kg], description: "Average realized price per unit or per volume."}
+      - {value: base_price, aliases: [regular price, shelf price, everyday price, non-promoted price, non-promo price], description: "Regular non-promoted price."}
+      - {value: price_index, aliases: [relative price], description: "Price relative to a competitor or category benchmark, expressed as an index."}
+      - {value: price_gap, aliases: [price differential, price difference], description: "Absolute or percentage price difference between two items."}
+      - {value: price_elasticity, aliases: [elasticity, price sensitivity], description: "Responsiveness of volume to price changes."}
+      - {value: roi, aliases: [return on investment, promo ROI, promotion ROI, promotional ROI, trade ROI], description: "Return on promotional or trade investment."}
+      - {value: promo_lift, aliases: [lift, uplift, promotional lift, promotion lift, promo uplift, sales lift], description: "Sales increase over baseline during a promotion."}
+      - {value: incremental_sales, aliases: [incrementals], description: "Incremental sales with no stated basis."}
+      - {value: incremental_volume, aliases: [incremental volume sales], description: "Incremental sales in volume units."}
+      - {value: incremental_value, aliases: [incremental revenue, incremental value sales, incremental dollars], description: "Incremental sales in currency."}
+      - {value: baseline_sales, aliases: [baseline, base sales, non-promoted sales], description: "Expected sales without promotion."}
+      - {value: trade_spend, aliases: [trade investment, trade promotion spend, promotional spend, promo spend], description: "Spend on trade promotion."}
+      - {value: promo_depth, aliases: [depth, discount depth, promotion depth, promotional depth, depth of discount], description: "Average depth of promotional discounts."}
+      - {value: promo_frequency, aliases: [frequency, promotion frequency, promotional frequency, number of promotions, promotion count], description: "How often an item is promoted."}
+      - {value: distribution, aliases: [], description: "Distribution with no stated basis."}
+      - {value: numeric_distribution, aliases: [ND, numeric dist, percent of stores selling], description: "Share of stores selling the item."}
+      - {value: weighted_distribution, aliases: [ACV, ACV distribution, percent ACV, WD, weighted dist], description: "Distribution weighted by store sales (ACV)."}
+      - {value: store_count, aliases: [number of stores, stores selling, stores carrying, door count], description: "Number of stores selling the item."}
+      - {value: out_of_stock_rate, aliases: [OOS, OOS rate, out of stock, out-of-stock, stockouts, stock-outs], description: "Share of stores or time with the item out of stock."}
+      - {value: sku_count, aliases: [number of SKUs, range size, assortment size, item count, number of items], description: "Number of SKUs in a range."}
+      - {value: shelf_share, aliases: [share of shelf, shelf space, facings, linear share], description: "Share of shelf space or facings."}

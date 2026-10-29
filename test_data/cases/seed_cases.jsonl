@@ -1,0 +1,10 @@
+{"question": "How did FreshFizz 500 ml plastic bottles perform in supermarkets in Northland last quarter?", "expected": {"test_case_id": "CPG-001", "intent": "performance_analysis"}, "evaluation_scope": "intent_only"}
+{"question": "What was the ROI of BOGO offers for SnackJoy Tortilla Rounds at MarketNest in Q1 2025?", "expected": {"test_case_id": "CPG-002", "intent": "promotion_analysis"}, "evaluation_scope": "intent_only"}
+{"question": "What was the average selling price of Cola Max cans in convenience stores last month?", "expected": {"test_case_id": "CPG-003", "intent": "pricing_analysis"}, "evaluation_scope": "intent_only"}
+{"question": "How many stores carried PureSpring in the Coastal Region during summer 2025?", "expected": {"test_case_id": "CPG-004", "intent": "distribution_analysis"}, "evaluation_scope": "intent_only"}
+{"question": "Which CrunchCo BBQ SKUs had the highest unit sales at MarketNest in Q1 2025?", "expected": {"test_case_id": "CPG-005", "intent": "assortment_analysis"}, "evaluation_scope": "intent_only"}
+{"question": "Show sales growth for FreshFizz Zero in Coastal Region over the last 12 months.", "expected": {"test_case_id": "CPG-006", "intent": "trend_analysis"}, "evaluation_scope": "intent_only"}
+{"question": "Forecast net revenue for DailyDairy Greek Vanilla in online retail next quarter.", "expected": {"test_case_id": "CPG-007", "intent": "forecast"}, "evaluation_scope": "intent_only"}
+{"question": "Compare the average price of FreshFizz and ColaMax at MarketNest for Q1 2025.", "expected": {"test_case_id": "CPG-008", "intent": "comparison"}, "evaluation_scope": "intent_only"}
+{"question": "Should we increase BOGO promotions for CrunchCo Sea Salt in grocery based on promo lift last quarter?", "expected": {"test_case_id": "CPG-009", "intent": "recommendation"}, "evaluation_scope": "intent_only"}
+{"question": "Write a bedtime story about a dragon.", "expected": {"test_case_id": "CPG-010", "intent": "unsupported"}, "evaluation_scope": "intent_only"}

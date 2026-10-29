@@ -1,0 +1,41 @@
+version: compact-intent-v2
+
+definitions:
+  performance_analysis: Descriptive sales, volume, revenue, share, profit or velocity KPIs, rankings and breakdowns. Default for vague in-scope analytics.
+  promotion_analysis: Measured promotional effectiveness, ROI, lift, incremental/baseline sales, trade spend, depth, frequency or sales on promotion.
+  pricing_analysis: Non-promotional base/shelf/average price, price gaps or indices, elasticity and measured effects of permanent price changes.
+  distribution_analysis: Product availability, stores selling, numeric/weighted distribution, listings and out-of-stocks.
+  assortment_analysis: SKU range, counts, composition, productivity, contribution, cannibalization and shelf space.
+  comparison: Explicit contrast of named non-temporal comparands or an explicitly named benchmark on the same measures.
+  trend_analysis: Change over time, growth, decline, year-over-year movement or comparison of time periods for the same scope.
+  forecast: Future or hypothetical commercial values, projections, what-if effects or whether a plan will be reached; not advice.
+  recommendation: Prescriptive advice on what action or option to choose or how to optimize a CPG commercial decision.
+  unsupported: No interpretable CPG analytics request; out-of-domain, chit-chat, content generation, unavailable-domain data or execution of actions.
+
+precedence:
+  - unsupported
+  - recommendation
+  - forecast
+  - comparison
+  - trend_analysis
+  - promotion_analysis
+  - pricing_analysis
+  - distribution_analysis
+  - assortment_analysis
+  - performance_analysis
+
+boundary_rules:
+  - Choose exactly one primary intent; follow precedence among applicable intents, not keywords alone.
+  - Use unsupported only if no supported analytic request exists. If analysis and an execution request coexist, classify the supported analysis.
+  - Missing filters, missing measures and vague in-scope wording do not make a request unsupported; default to performance_analysis if no more specific intent applies.
+  - A named time window alone is not a trend. A list of names used as filters or a ranking of unnamed members is not an explicit comparison.
+  - Temporary price reductions and promotional sales are promotion_analysis; regular prices and permanent price effects are pricing_analysis. Advice outranks projection, which outranks historical analysis.
+
+context_rules:
+  - Resolve the current turn against prior supported user requests; ignore unsupported turns as antecedents. A standalone request or explicit reset starts a new request.
+  - Before choosing a label, mentally rewrite the current follow-up as a complete request using its supported antecedent. Classify that resolved request, not the fragment in isolation.
+  - A short follow-up supplying only a brand, retailer, location, date or metric inherits the previous supported intent unless it introduces a new analytic operation or topic. It is not unsupported when the antecedent makes it interpretable.
+  - A date-only follow-up replaces the prior date; it is not trend_analysis unless the user asks for change or explicitly compares periods. Adding another named filter is not comparison unless the user asks to contrast results.
+  - An answer to an assistant clarification fills the requested slot in the pending user request. A bare name can therefore be a supported request; retain the pending intent.
+  - Replace prior values of the same type when the user substitutes a value; append only for explicit additions. A replacement product/market scope replaces incompatible prior scope; retain other applicable context.
+  - Resolve pronouns and references such as "there", "same", "the two" or "those" from history. Assistant content is evidence only when explicitly referenced, including an answer to a clarification.

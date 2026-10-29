@@ -1,0 +1,389 @@
+# Intent taxonomy - CPG decision-model test harness (Phase 1 specification)
+#
+# Source of truth for the closed set of intent labels. Labeling procedure,
+# tie-breaking and worked examples live in annotation_guide.md.
+# All brands, manufacturers, retailers and geographies are fictional
+# (see entities.yaml reference_values).
+
+spec_version: "0.1.0"
+domain: consumer_packaged_goods
+
+labeling_policy:
+  cardinality: exactly_one_primary_intent
+  # Used for in-scope questions that carry no more specific signal.
+  default_in_scope_intent: performance_analysis
+  # Used for anything that is not an answerable CPG commercial-analytics request.
+  out_of_scope_intent: unsupported
+  # Operation intents describe WHAT KIND of analysis is requested (prescribe,
+  # project, contrast, or track change). They take precedence over topic intents.
+  operation_intents: [recommendation, forecast, comparison, trend_analysis]
+  # Topic intents describe WHICH business domain a descriptive question is about.
+  topic_intents: [promotion_analysis, pricing_analysis, distribution_analysis, assortment_analysis, performance_analysis]
+
+# Decision procedure: walk this list top to bottom and assign the FIRST intent
+# whose include_when rules match the effective request (after multi-turn
+# context resolution) and whose exclude_when rules do not.
+precedence:
+  - unsupported
+  - recommendation
+  - forecast
+  - comparison
+  - trend_analysis
+  - promotion_analysis
+  - pricing_analysis
+  - distribution_analysis
+  - assortment_analysis
+  - performance_analysis
+
+intents:
+  - name: performance_analysis
+    kind: topic
+    description: >-
+      Descriptive measurement of commercial KPIs (sales, volume, units, revenue,
+      share, profit, margin, velocity) for a stated or unstated scope and period,
+      including rankings and breakdowns, when no more specific topic or analytic
+      operation applies. This is the default in-scope intent.
+    include_when:
+      - Asks for the level of a sales, volume, unit, revenue, share, profit, margin or velocity KPI ("What were...", "How much...", "Show...").
+      - Asks for a ranking, top/bottom-N list or breakdown of unnamed members by a performance KPI within one period ("top 5 brands by sales").
+      - Asks for actuals against plan, target or budget for one period.
+      - Asks a general in-scope question with no more specific signal ("How is FreshFizz doing?").
+      - Lists several values of one entity type as a filter without asking to contrast them ("Show sales for MarketNest and Basketly").
+    exclude_when:
+      - Asks how a measure changed or moved over time (growth, decline, YoY, trend, period by period) -> trend_analysis. A rolling window stated as one period ("in the last 12 months") is still a single period.
+      - Explicitly contrasts two or more named non-temporal comparands -> comparison.
+      - The primary measure or subject is promotional, pricing, distribution or assortment specific -> the matching topic intent.
+      - Asks for future or hypothetical values -> forecast; asks what to do -> recommendation.
+      - Not an answerable CPG commercial-analytics request -> unsupported.
+    typical_metrics: [sales, sales_value, sales_volume, unit_sales, net_revenue, gross_profit, gross_margin, market_share, value_share, volume_share, sales_velocity]
+    examples:
+      - What were FreshFizz sales in the grocery channel last quarter?
+      - Show value share for CrunchCo in Northland year to date.
+      - Which five brands had the highest unit sales at MarketNest last month?
+      - How is PureSpring performing in the Coastal Region?
+      - What was gross margin for Valemont Foods in 2025?
+    confusable_with:
+      - intent: trend_analysis
+        rule: A single-period level (even for a past period) is performance_analysis. Use trend_analysis only when the question asks about change, growth, decline or direction across periods.
+      - intent: comparison
+        rule: Rankings or breakdowns across unnamed members, or several values listed as a filter without contrast language, are performance_analysis. Use comparison only when the question explicitly contrasts two or more named comparands.
+      - intent: promotion_analysis
+        rule: Total sales regardless of promotion is performance_analysis. Sales measured on promotion, attributable to a promotion, or promotional effectiveness is promotion_analysis.
+      - intent: pricing_analysis
+        rule: Revenue or sales value is performance_analysis. Price levels, price per unit, price gaps, price indices and elasticity are pricing_analysis.
+      - intent: distribution_analysis
+        rule: Sales per store (velocity) is performance_analysis. How many or which stores carry an item, distribution percentages and out-of-stocks are distribution_analysis.
+      - intent: assortment_analysis
+        rule: Sales of a single item or brand is performance_analysis. The composition, size, productivity or shelf space of a range of SKUs is assortment_analysis.
+      - intent: unsupported
+        rule: Use unsupported only when no CPG commercial-analytics request can be identified. A vague but in-scope question ("How are we doing in Lakeshire?") is performance_analysis.
+
+  - name: promotion_analysis
+    kind: topic
+    description: >-
+      Analysis of promotional activity and its effectiveness: promotion ROI, lift,
+      incremental and baseline sales, trade spend, promotion depth and frequency,
+      and sales measured on or attributable to promotions.
+    include_when:
+      - Asks about the effectiveness or payback of a promotion, mechanic or trade investment (ROI, lift, incremental sales).
+      - Asks about baseline versus incremental sales.
+      - Asks about trade spend, promotion depth, promotion frequency or the number of promotions run.
+      - Asks about sales measured during, on, or attributable to a promotion or promotion type.
+      - Names a temporary price reduction, multi-buy, BOGO, feature, display, coupon, loyalty offer, bundle or bonus pack as the subject of analysis.
+    exclude_when:
+      - Regular, base or shelf price levels or permanent price changes -> pricing_analysis.
+      - Projected or what-if promotional outcomes -> forecast.
+      - Asks which promotion to run or how to change one -> recommendation.
+      - Contrasts promotional results of two or more named non-temporal comparands -> comparison.
+      - Asks how a promotional measure changed over time -> trend_analysis.
+    typical_metrics: [roi, promo_lift, incremental_sales, incremental_volume, incremental_value, baseline_sales, trade_spend, promo_depth, promo_frequency]
+    examples:
+      - Show promotion ROI for FreshFizz 500ml last quarter.
+      - What incremental volume did the CrunchCo multi-buy at Basketly generate in March?
+      - How much trade spend did Northpeak Drinks Co. invest in display promotions this year?
+      - What was the average promo depth on SnackJoy in the convenience channel?
+      - Did the BOGO on DailyDairy yogurt at Basketly pay back?
+    confusable_with:
+      - intent: pricing_analysis
+        rule: Temporary price reductions and other promotional mechanics are promotion_analysis. Regular, base or shelf prices, permanent price changes, price gaps, price indices and elasticity are pricing_analysis. If both are present, promotion_analysis wins by precedence.
+      - intent: performance_analysis
+        rule: Sales on promotion or attributable to promotion is promotion_analysis. Total sales with no promotional qualifier is performance_analysis.
+      - intent: forecast
+        rule: Measured results of past or current promotions are promotion_analysis. Projected outcomes of future or hypothetical promotions are forecast.
+      - intent: recommendation
+        rule: Evaluating how a promotion performed is promotion_analysis. Asking which promotion to run, or how to change it, is recommendation.
+      - intent: comparison
+        rule: Promotional results for one scope (or several values used only as a filter) are promotion_analysis. Explicit contrast of two or more named non-temporal comparands is comparison.
+      - intent: trend_analysis
+        rule: A promotional measure for one period is promotion_analysis. The change of that measure across periods is trend_analysis.
+
+  - name: pricing_analysis
+    kind: topic
+    description: >-
+      Analysis of non-promotional price: average, base, regular or shelf price
+      levels, price per unit, price indices, price gaps to competitors and price
+      elasticity, including the measured effect of permanent price changes.
+    include_when:
+      - Asks for a price level (average selling price, base, regular or shelf price, price per unit or per volume).
+      - Asks for a price index or price gap, including a gap between two named items (a single relational measure).
+      - Asks about price elasticity or the measured effect of a past permanent price change.
+    exclude_when:
+      - Temporary price reductions or other promotional mechanics -> promotion_analysis.
+      - Asks what price to set -> recommendation; asks for the projected effect of a future price change -> forecast.
+      - Side-by-side price levels of two or more named comparands (not a single gap or index) -> comparison.
+      - Asks how price moved over time -> trend_analysis.
+    typical_metrics: [price, average_price, base_price, price_index, price_gap, price_elasticity]
+    examples:
+      - What is the average price of PureSpring 6x500ml at Crateway Wholesale this year?
+      - What's the price gap between FreshFizz and ColaMax 330ml cans?
+      - What is the price elasticity of CrunchCo Sea Salt in Northland?
+      - What is the price index of CrunchCo versus the salty snacks category?
+      - What is the shelf price of BrightWash at MarketNest?
+    confusable_with:
+      - intent: promotion_analysis
+        rule: Regular price levels and permanent price changes are pricing_analysis. Temporary price reductions and promotional mechanics are promotion_analysis.
+      - intent: performance_analysis
+        rule: Price levels are pricing_analysis. Revenue or sales value is performance_analysis even though it is expressed in currency.
+      - intent: comparison
+        rule: A single relational measure between two parties (price gap, price index) is pricing_analysis. Side-by-side measurement of each named comparand ("compare the average price of A and B") is comparison.
+      - intent: forecast
+        rule: Measured price effects (elasticity, past changes) are pricing_analysis. Projected effects of a future or hypothetical price change are forecast.
+      - intent: recommendation
+        rule: Describing prices is pricing_analysis. Asking what price to set or whether to change price is recommendation.
+      - intent: trend_analysis
+        rule: A price level for one period is pricing_analysis. The movement of price across periods is trend_analysis.
+
+  - name: distribution_analysis
+    kind: topic
+    description: >-
+      Analysis of where products are available: numeric and weighted
+      distribution, number of stores selling, listings and gained or lost
+      distribution points, and out-of-stocks.
+    include_when:
+      - Asks how widely an item, brand or pack is available (numeric or weighted distribution, ACV, store count).
+      - Asks which or how many stores, retailers or regions carry an item.
+      - Asks about listings, gained or lost distribution, or out-of-stock levels.
+    exclude_when:
+      - Asks about the composition, size, productivity or shelf space of a range of SKUs -> assortment_analysis.
+      - Asks about sales per store (velocity) as a performance measure -> performance_analysis.
+      - Asks where to expand distribution -> recommendation; projected distribution -> forecast.
+      - Asks how distribution changed over time -> trend_analysis.
+    typical_metrics: [distribution, numeric_distribution, weighted_distribution, store_count, out_of_stock_rate]
+    examples:
+      - What is the weighted distribution of FreshFizz Zero in convenience stores across the Coastal Region?
+      - How many stores in Lakeshire carry FreshFizz 2L?
+      - What was the out-of-stock rate for CrunchCo at QuickNook last month?
+      - Which retailers in Northland list MorningGrain?
+    confusable_with:
+      - intent: assortment_analysis
+        rule: How widely a given item is available (stores, distribution percentages, out-of-stocks) is distribution_analysis. Which items make up a range and how productive the range is, is assortment_analysis.
+      - intent: performance_analysis
+        rule: Availability measures are distribution_analysis. Sales and sales-per-store measures are performance_analysis.
+      - intent: recommendation
+        rule: Describing current availability is distribution_analysis. Asking where to gain distribution or which listings to pursue is recommendation.
+      - intent: trend_analysis
+        rule: Distribution at one point or period is distribution_analysis. Gains or losses described as change across periods are trend_analysis.
+
+  - name: assortment_analysis
+    kind: topic
+    description: >-
+      Analysis of the product range: which SKUs make up an assortment, SKU counts,
+      range composition, SKU productivity and contribution, cannibalization
+      between items and share of shelf.
+    include_when:
+      - Asks which SKUs, flavours or pack sizes are in a range, or how many SKUs a retailer, channel or category carries.
+      - Asks about the productivity, contribution, incrementality or cannibalization of SKUs within a range.
+      - Asks about share of shelf or shelf space allocation.
+    exclude_when:
+      - Asks how widely a specific item is available -> distribution_analysis.
+      - Asks which SKUs to add, keep or delist -> recommendation.
+      - Asks how the range changed over time -> trend_analysis.
+    typical_metrics: [sku_count, shelf_share, sales_velocity]
+    examples:
+      - How many cola SKUs does Basketly carry?
+      - Which CrunchCo flavours contribute least to salty snacks sales at MarketNest?
+      - What is FreshFizz's share of shelf in the carbonated soft drinks aisle at QuickNook?
+      - Does FreshFizz Zero cannibalize FreshFizz Original?
+    confusable_with:
+      - intent: distribution_analysis
+        rule: The composition and productivity of a range is assortment_analysis. The availability of a given item across stores is distribution_analysis.
+      - intent: performance_analysis
+        rule: Measures that describe a range of SKUs (count, composition, shelf share, relative productivity) are assortment_analysis. Sales of an item or brand on its own is performance_analysis.
+      - intent: recommendation
+        rule: Describing the current range is assortment_analysis. Asking which SKUs to add, keep or delist is recommendation.
+      - intent: trend_analysis
+        rule: The range at one point or period is assortment_analysis. How the range changed across periods is trend_analysis.
+
+  - name: comparison
+    kind: operation
+    description: >-
+      Explicit side-by-side contrast of two or more named comparands of the same
+      non-temporal entity type (brands, manufacturers, products, categories,
+      packs, channels, retailers, geographies, promotion types), or of one named
+      comparand against an explicitly named benchmark, on the same measure(s).
+    include_when:
+      - Uses contrast language ("compare", "versus", "vs", "against", "relative to", "which is better/higher", "difference between") AND names two or more comparands of the same non-temporal entity type.
+      - Contrasts one named comparand with an explicitly named benchmark ("FreshFizz versus the category average", "MarketNest versus the rest of the market").
+      - A follow-up turn asks to compare values established in context ("compare the two").
+    exclude_when:
+      - Comparands are only time periods (Q1 vs Q2, this year vs last year) -> trend_analysis.
+      - Several values are listed only as a filter, without contrast language -> the applicable topic intent.
+      - A single relational measure is requested (price gap, price index, share) -> the applicable topic intent.
+      - Ranking of unnamed members ("top 5 brands") -> the applicable topic intent.
+      - Asks which comparand to choose for an action -> recommendation; projected values -> forecast.
+    typical_metrics: []
+    examples:
+      - Compare FreshFizz and ColaMax promo lift on 20% TPRs at MarketNest.
+      - How does CrunchCo value share at Basketly compare with MarketNest this year?
+      - Which performed better last quarter, 330ml cans or 500ml bottles of FreshFizz?
+      - How do PureSpring sales in the Coastal Region compare to the Highlands Region?
+      - Is DailyDairy's weighted distribution above the dairy category average?
+    confusable_with:
+      - intent: trend_analysis
+        rule: Contrasts between named non-temporal comparands are comparison. Contrasts that differ only by time period are trend_analysis. If both are present ("compare FreshFizz and ColaMax growth"), comparison wins by precedence.
+      - intent: performance_analysis
+        rule: Explicit contrast of named comparands is comparison. Listing several values as a filter, or ranking unnamed members, is performance_analysis.
+      - intent: promotion_analysis
+        rule: Explicit contrast of named comparands on a promotional measure is comparison. Promotional results without contrast language are promotion_analysis.
+      - intent: pricing_analysis
+        rule: Side-by-side price levels of named comparands are comparison. A single gap or index between two parties is pricing_analysis.
+      - intent: recommendation
+        rule: Contrasting outcomes is comparison. Asking which option to choose or act on is recommendation.
+
+  - name: trend_analysis
+    kind: operation
+    description: >-
+      Analysis of change or direction of any measure over time: trends,
+      growth or decline, period-over-period and year-over-year change, and
+      contrasts between time periods for the same scope.
+    include_when:
+      - Asks how a measure has changed, trended, grown or declined over time.
+      - Uses period-over-period language (YoY, versus last year, month over month, since a date).
+      - Contrasts the same scope across two or more time periods ("Q1 2025 versus Q1 2026").
+      - Asks for a time series or period-by-period view ("week by week", "weekly", "monthly trend").
+    exclude_when:
+      - A single-period level, including an aggregate over a rolling window ("lift over the last 12 months") -> the applicable topic intent.
+      - Two or more named non-temporal comparands are contrasted -> comparison.
+      - Future values -> forecast.
+    typical_metrics: []
+    examples:
+      - How has CrunchCo's value share trended over the last 12 months?
+      - Compare MorningGrain sales in Q1 2025 versus Q1 2026.
+      - Is FreshFizz volume growing or declining in the Metro Region?
+      - Show weekly CarePlus unit sales at WellCorner Pharmacy since January.
+      - Which brands grew fastest in the energy drinks category this year?
+    confusable_with:
+      - intent: performance_analysis
+        rule: Change across periods is trend_analysis. A level for one period is performance_analysis.
+      - intent: comparison
+        rule: Contrasts across time periods only are trend_analysis. Contrasts across named non-temporal comparands are comparison, even when growth is the measure.
+      - intent: forecast
+        rule: Historical change is trend_analysis. Projected or extrapolated future values are forecast.
+      - intent: promotion_analysis
+        rule: How a promotional measure changed across periods is trend_analysis. A promotional measure for one period is promotion_analysis.
+      - intent: pricing_analysis
+        rule: How price moved across periods is trend_analysis. A price level for one period is pricing_analysis.
+      - intent: distribution_analysis
+        rule: Distribution gains or losses over time are trend_analysis. Distribution at one point or period is distribution_analysis.
+      - intent: assortment_analysis
+        rule: How a range changed over time is trend_analysis. The range at one point or period is assortment_analysis.
+
+  - name: forecast
+    kind: operation
+    description: >-
+      Projection of future or hypothetical values of any measure, including
+      baseline forecasts, scenario and what-if simulations, and expected impact
+      of planned actions. Does not ask what to do.
+    include_when:
+      - Asks what a measure will be, is expected to be, or is projected to be in a future period.
+      - Asks for the expected effect of a hypothetical or planned change ("what if we raise price 5%", "if we run a 25% TPR").
+      - Asks whether a target or plan will be reached.
+    exclude_when:
+      - Asks what action to take, what is best or optimal -> recommendation.
+      - Asks about historical values or change -> the applicable topic intent or trend_analysis.
+      - Weather, macroeconomic or other non-CPG forecasts -> unsupported.
+    typical_metrics: []
+    examples:
+      - What will ColaMax volume be in the Metro Region next quarter if we run a 25% TPR?
+      - Forecast FreshFizz sales at MarketNest for next quarter.
+      - What happens to CrunchCo unit sales if the base price goes up 5%?
+      - Will MorningGrain hit its sales plan this year?
+    confusable_with:
+      - intent: recommendation
+        rule: Asking what will happen under a scenario is forecast. Asking which scenario or action to choose is recommendation.
+      - intent: trend_analysis
+        rule: Future or hypothetical values are forecast. Historical change is trend_analysis.
+      - intent: promotion_analysis
+        rule: Projected outcomes of future or hypothetical promotions are forecast. Measured outcomes of past promotions are promotion_analysis.
+      - intent: pricing_analysis
+        rule: Projected effects of a future price change are forecast. Measured elasticity and past price effects are pricing_analysis.
+      - intent: unsupported
+        rule: Only projections of CPG commercial measures are forecast. Weather, stock-market, macroeconomic or other non-CPG forecasts are unsupported.
+
+  - name: recommendation
+    kind: operation
+    description: >-
+      Request for prescriptive guidance: what action to take, which option to
+      choose, or how to optimize price, promotion, distribution or assortment.
+    include_when:
+      - Asks what should be done ("should we", "what should", "how can we improve", "what is the best/optimal").
+      - Asks which option to choose (which mechanic, price point, SKU to delist, retailer to prioritise).
+      - Asks for opportunities, priorities or actions.
+    exclude_when:
+      - Asks only what will happen under a scenario -> forecast.
+      - Asks only to describe or compare results -> the applicable topic intent or comparison.
+      - Asks the system to execute an action (change a price, send an email) -> unsupported.
+    typical_metrics: []
+    examples:
+      - Which promotion mechanic should we use for SnackJoy at QuickNook during the holiday season?
+      - What price should we set for FreshFizz 2L in the grocery channel?
+      - Which salty snacks SKUs should Basketly delist?
+      - Where should we focus distribution gains for PureSpring next year?
+    confusable_with:
+      - intent: forecast
+        rule: Prescribing or choosing an action is recommendation. Projecting outcomes without asking what to do is forecast.
+      - intent: comparison
+        rule: Asking which option to choose or prioritise is recommendation. Contrasting results without asking for a decision is comparison.
+      - intent: promotion_analysis
+        rule: Asking which promotion to run or how to change it is recommendation. Evaluating a promotion's results is promotion_analysis.
+      - intent: pricing_analysis
+        rule: Asking what price to set is recommendation. Describing prices or elasticity is pricing_analysis.
+      - intent: distribution_analysis
+        rule: Asking where to expand distribution is recommendation. Describing current availability is distribution_analysis.
+      - intent: assortment_analysis
+        rule: Asking which SKUs to add, keep or delist is recommendation. Describing the current range is assortment_analysis.
+      - intent: unsupported
+        rule: Asking for advice on a CPG commercial decision is recommendation. Asking the system to perform an action, or for advice outside CPG commercial analytics, is unsupported.
+
+  - name: unsupported
+    kind: out_of_scope
+    description: >-
+      Any user turn that is not an answerable CPG commercial-analytics request:
+      out-of-domain questions, requests to execute actions, chit-chat, content
+      generation, requests for data the harness domain does not cover, and turns
+      that cannot be interpreted even with conversation context. All entities
+      are empty for this intent.
+    include_when:
+      - The question is outside CPG commercial analytics (weather, HR, IT support, general knowledge, stock prices, news).
+      - The turn asks the system to perform an action or transaction (change a price, place an order, send an email, book a meeting).
+      - The turn is chit-chat, a greeting, thanks, or a content-generation request (poems, slogans) with no analytic request.
+      - The turn asks for information the domain does not hold (consumer personal data, competitors' confidential plans, social-media sentiment).
+      - The turn cannot be interpreted as any request even with established conversation context ("What about the other one?" with no antecedent).
+    exclude_when:
+      - The question is in scope but vague or underspecified -> default_in_scope_intent (performance_analysis) or the applicable intent, with only stated entities.
+      - The turn contains a supported analytic request alongside an unsupported action -> label the supported analytic request.
+      - Words such as "forecast" or "recommend" appear but the request is a CPG analytic request -> the applicable intent.
+    typical_metrics: []
+    examples:
+      - What's the weather forecast for Port Amberly this weekend?
+      - Raise the FreshFizz shelf price at MarketNest to $1.99.
+      - Write a poem about CrunchCo.
+      - Which new products is ColaMax secretly planning to launch next year?
+      - Thanks, that's all for now.
+    confusable_with:
+      - intent: performance_analysis
+        rule: A vague but in-scope question is performance_analysis. Only turns with no identifiable CPG analytic request are unsupported.
+      - intent: forecast
+        rule: Non-CPG forecasts (weather, macroeconomics) are unsupported. Projections of CPG commercial measures are forecast.
+      - intent: recommendation
+        rule: Requests to execute actions, or for advice outside CPG commercial analytics, are unsupported. Advice on CPG commercial decisions is recommendation.
