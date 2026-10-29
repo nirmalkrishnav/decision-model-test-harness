@@ -7,11 +7,10 @@ from copy import deepcopy
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
-from threading import Event
 from unittest.mock import Mock, patch
 
 from evaluator.execution_gate import (
-    DATASET_PATH, _waiting_for_model, load_cases, load_setup, predict, run, summarize,
+    DATASET_PATH, load_cases, load_setup, predict, run, summarize,
 )
 from evaluator.metrics import load_jsonl
 from scripts.build_execution_dataset import build_cases
@@ -169,7 +168,7 @@ class ExecutionGateTests(unittest.TestCase):
         ):
             _, _, failures = run(
                 {"deployment_names": ["model-a", "model-b"], "repeat_count": 2},
-                cases, {"model-a": Mock(), "model-b": Mock()}, Path(directory),
+                cases, {"model-a": Mock(), "model-b": Mock()}, Path(directory), workers=1,
             )
         log = output.getvalue()
         self.assertEqual(failures, 1)
@@ -183,28 +182,6 @@ class ExecutionGateTests(unittest.TestCase):
         self.assertNotIn("EXEC-002", log)  # No per-question success spam.
         self.assertLess(len(log.splitlines()), 35)
 
-    def test_slow_call_heartbeat_is_flushed_and_stops_on_exception(self):
-        heartbeat_seen = Event()
-        real_print = print
-
-        def capture_print(*args, **kwargs):
-            self.assertTrue(kwargs.get("flush"))
-            heartbeat_seen.set()
-            real_print(*args, **kwargs)
-
-        output = io.StringIO()
-        with redirect_stdout(output), patch(
-            "evaluator.execution_gate.HEARTBEAT_SECONDS", 0.01
-        ), patch("builtins.print", side_effect=capture_print):
-            with self.assertRaisesRegex(RuntimeError, "test failure"):
-                with _waiting_for_model("model-a EXEC-001"):
-                    self.assertTrue(heartbeat_seen.wait(timeout=2))
-                    raise RuntimeError("test failure")
-            before = output.getvalue()
-            self.assertIn("Waiting: model-a EXEC-001", before)
-            self.assertIn("call still pending", before)
-        # Exiting the context joins the worker, including on exceptions.
-        self.assertEqual(output.getvalue(), before)
 
 
 if __name__ == "__main__":

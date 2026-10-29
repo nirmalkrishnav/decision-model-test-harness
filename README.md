@@ -136,6 +136,36 @@ Total cost is reported as `null` when an applicable rate is unknown; known input
 
 ## Run and evaluate
 
+Run **both benchmarks** with one command:
+
+```powershell
+venv\Scripts\python.exe -m evaluator
+```
+
+This runs the 155-case intent suite first, then the 90-case execution-decision suite using the same configured deployments and repeats. With three deployments and one repeat, it makes **735 classification calls**. The ten-case seed set is an alternative smoke dataset, not an additional suite. No submitted Python or SQL is executed.
+
+Outputs remain separate: intent files under `results/`, execution-decision files under `results/execution_gate/`. The second suite runs even if the first returns call/validation failures. The overall exit code is 0 for success, 1 for recorded execution failures, or 2 for setup/input errors; interruption stops the command.
+
+Shared options: `--config`, `--deployment`, and `--results-dir` (results root). Use `--intent-dataset` and `--execution-dataset` to override suite datasets.
+
+All three entry commands accept `--workers`, a positive integer defaulting to **10**:
+
+```powershell
+venv\Scripts\python.exe -m evaluator --workers 10
+venv\Scripts\python.exe -m evaluator.run --workers 5
+venv\Scripts\python.exe -m evaluator.execution_gate --workers 5
+```
+
+Suites and models still run sequentially; up to the specified number of evaluation calls run concurrently within the active model. The limit is not multiplied by model count. Use `--workers 1` for serial evaluation or reduce the count if your endpoint throttles requests. Worker errors remain recorded failures; this option does not change SDK retry/timeout policies.
+
+Results are written/flushed by the coordinator in completion order (not dataset order), with case IDs/repeat indices preserved. Each new record includes the worker setting. Metrics and repeat comparisons do not depend on file order. Per-call latency starts when a worker begins the evaluation, excluding time waiting for a worker slot. Increased concurrency can change endpoint latency, throttling and caching; do not compare performance blindly against earlier serial runs. On interruption, queued calls are cancelled; already-running calls must finish or time out before clients are closed.
+
+```powershell
+venv\Scripts\python.exe -m evaluator --deployment Decision-1
+```
+
+To run **only intent classification**, use:
+
 ```powershell
 python -m evaluator.run
 ```
@@ -212,7 +242,7 @@ Removed 95 entity-focused cases: multiple entities (40), normalization (30), and
 
 The benchmark covers all ten intents. Context scenarios test classification of resolved follow-ups, intent changes, resets, clarification answers and unsupported turns. Paraphrases have five groups of four equivalent intent labels, identified by `paraphrase_group`.
 
-Every benchmark record includes `evaluation_scope: "intent_only"`, a classification rationale, `spec_version: "0.1.0"` and `annotation_status: "draft"`. Labels were authored from the specification without model predictions, but **have not been independently double-annotated or adjudicated**. Cases use repeated controlled templates across fictional brands; this is a starter benchmark, not 155 independent real-world observations. Keep related paraphrases/templates together if later creating train/test splits. Historical results and the HTML experiment report still describe the earlier 250-case experiment, not this reduced dataset.
+Every benchmark record includes `evaluation_scope: "intent_only"`, a classification rationale, `spec_version: "0.1.0"` and `annotation_status: "draft"`. Labels were authored from the specification without model predictions, but **have not been independently double-annotated or adjudicated**. Cases use repeated controlled templates across fictional brands; this is a starter benchmark, not 155 independent real-world observations. Keep related paraphrases/templates together if later creating train/test splits. Historical results retain their original scope; the HTML report now covers the full active intent dataset and execution benchmark.
 
 The generated dataset is checked into the workspace and ready to run. To regenerate after changing its authoring definitions:
 
@@ -281,6 +311,16 @@ venv\Scripts\python.exe -m evaluator.execution_gate --evaluate results\execution
 
 With three deployments and one repeat, the full dataset makes **270 classification calls**, not code/query executions. `--config`, `--dataset` and `--results-dir` override defaults. Outputs go to `results/execution_gate/`, separate from CPG results. The command exits nonzero for invalid outputs/API exceptions, not simply wrong classifications.
 
-CLI progress is flushed immediately: startup/model initialization, each model's starting count, every 10 completed decisions, and model completion. Updates show overall and per-model completed/pending counts, Python/SQL counts, active question-category counts and errors. A compact full category breakdown is printed at each model's end. Slow calls print a waiting heartbeat every 15 seconds with the current model/case/type; this does not cancel or restart requests. Errors are shown immediately; successful cases do not produce individual lines. Completed counts include failed attempts (reported separately as errors); pending includes the in-flight call. Counts include configured repeats.
+CLI progress is flushed immediately: startup/model initialization, each model's starting count, every 10 completed decisions, and model completion. Updates show overall and per-model completed/pending counts, Python/SQL counts, active question-category counts and errors. A compact full category breakdown is printed at each model's end. When no calls complete for 15 seconds, one aggregate waiting heartbeat shows the model, worker setting and completed/pending counts; it does not cancel or restart requests. There is no separate heartbeat spam from each worker. Errors are shown immediately; successful cases do not produce individual lines. Completed counts include failed attempts (reported separately as errors); pending includes in-flight and not-yet-started calls. Counts include configured repeats.
 
 Summaries include decision accuracy/precision/recall/F1, **unsafe-allow rate** (predicted allow / expected block), **false-block rate** (predicted block / expected allow), per-language, permission-profile and category breakdowns, schema validity, failures, repeated agreement, P50/P95 latency, tokens and available cost estimates. Failed/invalid answers count as wrong and are not credited as blocks. Policy version and a hash of the policy/prompt/schema are saved with every record. Labels are author-authored draft expectations requiring independent review before making safety claims.
+
+### Refreshed experiment report
+
+`reports/cpg-model-experiment.html` covers both completed suites: intent run `run-20261029T142422045952Z.jsonl` (465 calls) and execution run `run-20261029T142610177559Z.jsonl` (270 calls). Both used five workers per active model and one repeat. The report separates task scores, includes all 34 incorrect predictions with context, intent/category breakdowns, execution language/permission breakdowns, latency, usage, pricing gaps and limitations. Entity extraction and datasource selection are excluded. The legacy filename is retained for existing bookmarks.
+
+```powershell
+venv\Scripts\python.exe -m scripts.build_experiment_report
+```
+
+The offline generator pins these evidence files explicitly for reproducibility rather than silently selecting the newest file. It checks unique identities, dataset agreement, context, adapter/policy versions and worker settings, then reproduces both suites' saved metrics before replacing the report. Source hashes identify the input files and pricing configuration. It makes no model calls and executes none of the sample code.

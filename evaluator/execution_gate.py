@@ -8,11 +8,10 @@ import json
 import sys
 import time
 from collections import Counter
-from contextlib import ExitStack, contextmanager
+from contextlib import ExitStack
 from datetime import datetime, timezone
 from pathlib import Path
 from string import Template
-from threading import Event, Thread
 from typing import Any
 
 import jsonschema
@@ -21,34 +20,13 @@ from typesafe_sdk import Choice
 
 from evaluator.metrics import calculate_cost, evaluate_records, load_jsonl, validate_pricing
 from evaluator.run import CONFIG_PATH, ROOT, _foundry_client, load_config
+from evaluator.workers import completed_jobs, positive_workers
 
 DATASET_PATH = ROOT / "test_data" / "execution_gate" / "cases.jsonl"
 SCHEMA_PATH = DATASET_PATH.with_name("output.schema.json")
 POLICY_PATH = ROOT / "config" / "execution_gate_policy.yml"
 PROMPTS_PATH = ROOT / "config" / "execution_gate_prompts.yml"
 RESULTS_DIR = ROOT / "results" / "execution_gate"
-HEARTBEAT_SECONDS = 15
-
-
-@contextmanager
-def _waiting_for_model(description: str):
-    stopped = Event()
-    started = time.perf_counter()
-
-    def heartbeat():
-        while not stopped.wait(HEARTBEAT_SECONDS):
-            elapsed = time.perf_counter() - started
-            print(f"  Waiting: {description} ({elapsed:.0f}s elapsed; call still pending)", flush=True)
-
-    worker = Thread(target=heartbeat, daemon=True)
-    worker.start()
-    try:
-        yield
-    finally:
-        stopped.set()
-        worker.join()
-
-
 def _print_progress(deployment: str, cases: list[dict], repeats: int, rows: list[dict],
                     overall_done: int, overall_total: int, *, final: bool = False):
     total = len(cases) * repeats
@@ -254,7 +232,7 @@ def summarize(records: list[dict], pricing: dict, *, grouped: bool = True) -> di
     return score
 
 
-def run(config: dict, cases: list[dict], clients: dict, results_dir: Path):
+def run(config: dict, cases: list[dict], clients: dict, results_dir: Path, *, workers: int = 10):
     if not config["deployment_names"]:
         raise ValueError("No deployments configured")
     policy, prompts, schema = load_setup()
@@ -272,64 +250,75 @@ def run(config: dict, cases: list[dict], clients: dict, results_dir: Path):
     overall_total = len(config["deployment_names"]) * len(cases) * repeats
     print(
         f"Execution gate: {len(cases)} cases x {len(config['deployment_names'])} models "
-        f"x {repeats} repeats = {overall_total} decisions. No code/SQL is executed.",
+        f"x {repeats} repeats = {overall_total} decisions; workers={workers}. No code/SQL is executed.",
         flush=True,
     )
     print(f"Results (saved after each decision): {path}", flush=True)
     for name in config["deployment_names"]:
         print(f"  {name}: completed 0, pending {len(cases) * repeats}", flush=True)
+
+    def evaluate(job):
+        deployment, case, repeat = job
+        started = time.perf_counter()
+        actual = raw = error = None
+        input_tokens = output_tokens = 0
+        cached_tokens = None
+        valid = False
+        try:
+            raw, input_tokens, output_tokens, cached_tokens = predict(
+                clients[deployment], deployment, case, policy, prompts, schema,
+            )
+            actual = json.loads(raw)
+            jsonschema.validate(actual, schema)
+            if actual["test_case_id"] != case["expected"]["test_case_id"]:
+                raise ValueError("Model returned the wrong test_case_id")
+            valid = True
+        except Exception as exc:
+            error = {"type": type(exc).__name__, "message": str(exc)}
+        row = {
+            **case, "actual": actual, "schema_valid": valid, "error": error,
+            "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+            "deployment": deployment, "repeat_index": repeat,
+            "policy_version": policy["version"], "prompt_policy_sha256": fingerprint,
+            "latency_ms": (time.perf_counter() - started) * 1000,
+            "input_tokens": input_tokens, "output_tokens": output_tokens,
+            "cached_input_tokens": cached_tokens,
+            "workers": workers,
+        }
+        if raw is not None and not valid:
+            row["raw_output"] = raw
+        row.update(calculate_cost(row, pricing.get(deployment)))
+        return row
+
     with path.open("x", encoding="utf-8") as output:
         for deployment in config["deployment_names"]:
             model_rows = []
             _print_progress(deployment, cases, repeats, model_rows, len(records), overall_total)
-            for case in cases:
-                for repeat in range(1, repeats + 1):
-                    started = time.perf_counter()
-                    actual = raw = error = None
-                    input_tokens = output_tokens = 0
-                    cached_tokens = None
-                    valid = False
-                    try:
-                        with _waiting_for_model(
-                            f"{deployment} {case['expected']['test_case_id']} "
-                            f"{case['state']['language']}/{case['category']} repeat={repeat}; "
-                            f"model completed {len(model_rows)}, pending {len(cases) * repeats - len(model_rows)}"
-                        ):
-                            raw, input_tokens, output_tokens, cached_tokens = predict(
-                                clients[deployment], deployment, case, policy, prompts, schema,
-                            )
-                        actual = json.loads(raw)
-                        jsonschema.validate(actual, schema)
-                        if actual["test_case_id"] != case["expected"]["test_case_id"]:
-                            raise ValueError("Model returned the wrong test_case_id")
-                        valid = True
-                    except Exception as exc:
-                        failures += 1
-                        error = {"type": type(exc).__name__, "message": str(exc)}
-                    row = {
-                        **case, "actual": actual, "schema_valid": valid, "error": error,
-                        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-                        "deployment": deployment, "repeat_index": repeat,
-                        "policy_version": policy["version"], "prompt_policy_sha256": fingerprint,
-                        "latency_ms": (time.perf_counter() - started) * 1000,
-                        "input_tokens": input_tokens, "output_tokens": output_tokens,
-                        "cached_input_tokens": cached_tokens,
-                    }
-                    if raw is not None and not valid:
-                        row["raw_output"] = raw
-                    row.update(calculate_cost(row, pricing.get(deployment)))
-                    records.append(row)
-                    model_rows.append(row)
-                    output.write(json.dumps(row) + "\n")
-                    output.flush()
-                    if error:
-                        print(
-                            f"  ERROR {deployment} {case['expected']['test_case_id']}: "
-                            f"{error['type']}: {error['message'].splitlines()[0][:200]}",
-                            flush=True,
-                        )
-                    if len(model_rows) % 10 == 0 and len(model_rows) != len(cases) * repeats:
-                        _print_progress(deployment, cases, repeats, model_rows, len(records), overall_total)
+            jobs = ((deployment, case, repeat) for case in cases for repeat in range(1, repeats + 1))
+
+            def waiting():
+                print(
+                    f"  Waiting: {deployment}, workers={workers}; completed {len(model_rows)}, "
+                    f"pending {len(cases) * repeats - len(model_rows)} (calls still pending)",
+                    flush=True,
+                )
+
+            for _, future in completed_jobs(evaluate, jobs, workers, on_wait=waiting):
+                row = future.result()
+                error = row["error"]
+                failures += error is not None
+                records.append(row)
+                model_rows.append(row)
+                output.write(json.dumps(row) + "\n")
+                output.flush()
+                if error:
+                    print(
+                        f"  ERROR {deployment} {row['expected']['test_case_id']}: "
+                        f"{error['type']}: {error['message'].splitlines()[0][:200]}",
+                        flush=True,
+                    )
+                if len(model_rows) % 10 == 0 and len(model_rows) != len(cases) * repeats:
+                    _print_progress(deployment, cases, repeats, model_rows, len(records), overall_total)
             _print_progress(deployment, cases, repeats, model_rows, len(records), overall_total, final=True)
     print("All decisions completed. Calculating summaries...", flush=True)
     summary = {
@@ -347,6 +336,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--dataset", type=Path, default=DATASET_PATH)
     parser.add_argument("--results-dir", type=Path, default=RESULTS_DIR)
     parser.add_argument("--deployment")
+    parser.add_argument("--workers", type=positive_workers, default=10)
     parser.add_argument("--evaluate", type=Path, help="recompute metrics for a saved execution-gate run")
     args = parser.parse_args(argv)
     try:
@@ -373,7 +363,9 @@ def main(argv: list[str] | None = None) -> int:
             for name in config["deployment_names"]:
                 print(f"Initializing model: {name}", flush=True)
                 clients[name] = stack.enter_context(_foundry_client(name))
-            path, summary_path, failures = run(config, cases, clients, args.results_dir)
+            path, summary_path, failures = run(
+                config, cases, clients, args.results_dir, workers=args.workers,
+            )
     except (OSError, ValueError, yaml.YAMLError, jsonschema.ValidationError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2

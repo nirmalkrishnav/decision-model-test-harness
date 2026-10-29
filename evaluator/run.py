@@ -19,6 +19,7 @@ from dotenv import load_dotenv
 
 from evaluator.metrics import calculate_cost, evaluate_records, load_jsonl, validate_pricing
 from evaluator.policy import load_policy
+from evaluator.workers import completed_jobs, positive_workers
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = Path(__file__).resolve().parent / "config.json"
@@ -219,6 +220,8 @@ def run(
     schema: dict[str, Any],
     client,
     results_dir: Path,
+    *,
+    workers: int = 10,
 ) -> tuple[Path, Path, int]:
     deployments: list[str] = config["deployment_names"]
     if not deployments:
@@ -237,80 +240,81 @@ def run(
     result_path = results_dir / f"run-{timestamp}.jsonl"
     records = []
     failures = 0
+    print(f"Intent evaluation: up to {workers} concurrent calls per model.", flush=True)
+
+    def evaluate(job):
+        deployment, case, repeat_index = job
+        deployment_client = client[deployment] if isinstance(client, dict) else client
+        started = time.perf_counter()
+        expected = case["expected"]
+        actual = raw_output = error = None
+        input_tokens = output_tokens = 0
+        cached_input_tokens = None
+        schema_valid = False
+        try:
+            context_args = {"context": case["context"]} if case.get("context") else {}
+            raw_output, input_tokens, output_tokens, cached_input_tokens = _predict(
+                deployment_client, deployment, case["question"], expected["test_case_id"],
+                schema, **context_args,
+            )
+            actual = json.loads(raw_output)
+            if isinstance(actual, dict) and "turn_index" in expected:
+                actual.setdefault("turn_index", expected["turn_index"])
+                if actual["turn_index"] != expected["turn_index"]:
+                    raise ValueError("Model returned the wrong turn_index")
+            if actual.get("test_case_id") != expected["test_case_id"]:
+                raise ValueError("Model returned a test_case_id that does not match the case")
+            jsonschema.validate(actual, schema)
+            schema_valid = True
+        except Exception as exc:
+            error = {"type": type(exc).__name__, "message": str(exc)}
+        record = {
+            "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+            "deployment": deployment, "repeat_index": repeat_index,
+            "question": case["question"], "expected": expected, "actual": actual,
+            "latency_ms": (time.perf_counter() - started) * 1000,
+            "input_tokens": input_tokens, "output_tokens": output_tokens,
+            "cached_input_tokens": cached_input_tokens,
+            "schema_valid": schema_valid, "error": error, "entity_evaluation": False,
+            "workers": workers,
+        }
+        if raw_output is not None and not schema_valid:
+            record["raw_output"] = raw_output
+        if deployment.casefold() == "decision-1":
+            from evaluator.decision import PROMPT_VERSION
+            record["adapter_prompt_version"] = PROMPT_VERSION
+        else:
+            record["adapter_prompt_version"] = "intent-only-chat-v2-compact"
+        for metadata in (
+            "category", "context", "spec_version", "annotation_status",
+            "paraphrase_group", "evaluation_scope",
+        ):
+            if metadata in case:
+                record[metadata] = case[metadata]
+        record.update(calculate_cost(record, pricing.get(deployment)))
+        return record
+
     with result_path.open("w", encoding="utf-8", newline="\n") as output:
         for deployment in deployments:
-            deployment_client = client[deployment] if isinstance(client, dict) else client
-            for case in cases:
-                for repeat_index in range(1, repeats + 1):
-                    expected = case["expected"]
-                    started = time.perf_counter()
-                    actual = None
-                    raw_output = None
-                    input_tokens = output_tokens = 0
-                    cached_input_tokens = None
-                    error = None
-                    schema_valid = False
-                    try:
-                        context_args = {"context": case["context"]} if case.get("context") else {}
-                        raw_output, input_tokens, output_tokens, cached_input_tokens = _predict(
-                            deployment_client, deployment, case["question"], expected["test_case_id"],
-                            schema, **context_args
-                        )
-                        actual = json.loads(raw_output)
-                        if isinstance(actual, dict) and "turn_index" in expected:
-                            actual.setdefault("turn_index", expected["turn_index"])
-                            if actual["turn_index"] != expected["turn_index"]:
-                                raise ValueError("Model returned the wrong turn_index")
-                        if actual.get("test_case_id") != expected["test_case_id"]:
-                            raise ValueError("Model returned a test_case_id that does not match the case")
-                        jsonschema.validate(actual, schema)
-                        schema_valid = True
-                    except Exception as exc:
-                        failures += 1
-                        error = {"type": type(exc).__name__, "message": str(exc)}
-                    latency_ms = (time.perf_counter() - started) * 1000
-                    record = {
-                        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
-                        "deployment": deployment,
-                        "repeat_index": repeat_index,
-                        "question": case["question"],
-                        "expected": expected,
-                        "actual": actual,
-                        "latency_ms": latency_ms,
-                        "input_tokens": input_tokens,
-                        "output_tokens": output_tokens,
-                        "cached_input_tokens": cached_input_tokens,
-                        "schema_valid": schema_valid,
-                        "error": error,
-                        "entity_evaluation": False,
-                    }
-                    if raw_output is not None and not schema_valid:
-                        record["raw_output"] = raw_output
-                    if deployment.casefold() == "decision-1":
-                        from evaluator.decision import PROMPT_VERSION
+            jobs = ((deployment, case, repeat) for case in cases for repeat in range(1, repeats + 1))
 
-                        record["adapter_prompt_version"] = PROMPT_VERSION
-                    else:
-                        record["adapter_prompt_version"] = "intent-only-chat-v2-compact"
-                    for metadata in (
-                        "category", "context", "spec_version", "annotation_status",
-                        "paraphrase_group", "evaluation_scope",
-                    ):
-                        if metadata in case:
-                            record[metadata] = case[metadata]
-                    rates = pricing.get(deployment)
-                    record.update(calculate_cost(record, rates))
-                    records.append(record)
-                    output.write(json.dumps(record, ensure_ascii=False) + "\n")
-                    output.flush()
-                    completed = len(records)
-                    total = len(deployments) * len(cases) * repeats
-                    status = f"ERROR {error['type']}: {error['message'].splitlines()[0]}" if error else "OK"
-                    print(
-                        f"[{completed}/{total}] {deployment} {expected['test_case_id']} "
-                        f"repeat={repeat_index} {status} ({latency_ms:.0f} ms)",
-                        flush=True,
-                    )
+            def waiting():
+                print(f"Waiting: {deployment}, workers={workers}; overall completed {len(records)}, "
+                      f"pending {len(deployments) * len(cases) * repeats - len(records)}", flush=True)
+
+            for _, future in completed_jobs(evaluate, jobs, workers, on_wait=waiting):
+                record = future.result()
+                error = record["error"]
+                failures += error is not None
+                records.append(record)
+                output.write(json.dumps(record, ensure_ascii=False) + "\n")
+                output.flush()
+                status = f"ERROR {error['type']}: {error['message'].splitlines()[0]}" if error else "OK"
+                print(
+                    f"[{len(records)}/{len(deployments) * len(cases) * repeats}] {deployment} "
+                    f"{record['expected']['test_case_id']} repeat={record['repeat_index']} "
+                    f"{status} ({record['latency_ms']:.0f} ms)", flush=True,
+                )
 
     intent_labels = schema["properties"]["intent"]["enum"]
     entity_names = schema.get("$defs", {}).get("entities", {}).get("properties", {}).keys()
@@ -334,6 +338,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--dataset", type=Path, default=DATASET_PATH)
     parser.add_argument("--results-dir", type=Path, default=DEFAULT_RESULTS_DIR)
     parser.add_argument("--deployment", help="run only this configured deployment")
+    parser.add_argument("--workers", type=positive_workers, default=10)
     args = parser.parse_args(argv)
     try:
         config = load_config(args.config)
@@ -353,7 +358,9 @@ def main(argv: list[str] | None = None) -> int:
                 deployment: stack.enter_context(_foundry_client(deployment))
                 for deployment in config["deployment_names"]
             }
-            result_path, summary_path, failures = run(config, cases, schema, client, args.results_dir)
+            result_path, summary_path, failures = run(
+                config, cases, schema, client, args.results_dir, workers=args.workers,
+            )
     except (OSError, ValueError, RuntimeError, json.JSONDecodeError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
