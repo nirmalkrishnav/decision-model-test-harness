@@ -13,14 +13,15 @@ from evaluator.execution_gate import summarize
 from evaluator.metrics import evaluate_records, load_jsonl
 
 ROOT = Path(__file__).resolve().parent.parent
-RUN = ROOT / "results" / "execution_gate" / "run-20261029T142610177559Z.jsonl"
+EVIDENCE = ROOT / "reports" / "evidence"
+RUN = EVIDENCE / "results" / "execution_gate" / "run-20261029T142610177559Z.jsonl"
 SUMMARY = RUN.with_name("summary-20261029T142610177559Z.json")
-DATASET = ROOT / "test_data" / "execution_gate" / "cases.jsonl"
-INTENT_RUN = ROOT / "results" / "run-20261029T142422045952Z.jsonl"
+DATASET = EVIDENCE / "test_data" / "execution_gate" / "cases.jsonl"
+INTENT_RUN = EVIDENCE / "results" / "run-20261029T142422045952Z.jsonl"
 INTENT_SUMMARY = INTENT_RUN.with_name("summary-20261029T142422045952Z.json")
-INTENT_DATASET = ROOT / "test_data" / "cases" / "intent_cases.jsonl"
-INTENT_SCHEMA = ROOT / "test_data" / "schemas" / "intent_output.schema.json"
-CONFIG = ROOT / "evaluator" / "config.json"
+INTENT_DATASET = EVIDENCE / "test_data" / "cases" / "intent_cases.jsonl"
+INTENT_SCHEMA = EVIDENCE / "test_data" / "schemas" / "intent_output.schema.json"
+CONFIG = EVIDENCE / "evaluator" / "config.json"
 OUTPUT = ROOT / "reports" / "cpg-model-experiment.html"
 COLORS = ["#2563eb", "#b45309", "#07826b"]
 
@@ -289,9 +290,11 @@ def render() -> str:
                 f"<p><strong>Label rationale:</strong> {escape(row['rationale'])}</p></details>"
             )
     source_rows = [
-        [path.name, hashlib.sha256(path.read_bytes()).hexdigest()]
+        [path.relative_to(EVIDENCE).as_posix(), hashlib.sha256(path.read_bytes()).hexdigest()]
         for path in (INTENT_RUN, INTENT_SUMMARY, INTENT_DATASET, INTENT_SCHEMA,
-                     RUN, SUMMARY, DATASET, CONFIG)
+                     RUN, SUMMARY, DATASET, CONFIG,
+                     *sorted((EVIDENCE / "config").glob("*.yml")),
+                     EVIDENCE / "test_data" / "execution_gate" / "output.schema.json")
     ]
     policy_hash = records[0]["prompt_policy_sha256"]
     return f"""<!doctype html>
@@ -438,21 +441,24 @@ with explicit engine-specific policies. Keep closely related matrix cases togeth
 <p>This generator verifies 465 intent and 270 execution records with unique single-repeat identities, dataset agreement,
 consistent worker settings, one execution prompt hash and per-model intent adapter versions.
 It recomputes every saved summary before rendering. Intent conversation histories are preserved in the records and
-checked against the dataset. The intent runner did not persist a prompt-content hash; current YAML files do not
+checked against the dataset. The intent runner did not persist a prompt-content hash; archived YAML files do not
 prove exact historical prompt contents. Source hashes below identify report inputs; they are provenance fingerprints,
-not independent signatures. Pricing is recomputed using the hashed current configuration.</p>
+not independent signatures. Pricing is recomputed using the hashed archived configuration.
+All result files and report-input snapshots are bundled under reports/evidence; working results remain separate.</p>
 {table(["Source", "SHA-256"], source_rows)}
-<p><a href="../results/{INTENT_RUN.name}">Raw intent records</a> ·
-<a href="../results/{INTENT_SUMMARY.name}">Intent summary</a> ·
-<a href="../test_data/cases/intent_cases.jsonl">Intent dataset</a> ·
-<a href="../config/intent_runtime_policy.yml">Intent runtime policy (current workspace)</a></p>
-<p><a href="../results/execution_gate/{RUN.name}">Raw execution records</a> ·
-<a href="../results/execution_gate/{SUMMARY.name}">Saved summary</a> ·
-<a href="../test_data/execution_gate/cases.jsonl">Draft dataset</a> ·
-<a href="../config/execution_gate_policy.yml">Policy file (current workspace)</a> ·
-<a href="../config/execution_gate_prompts.yml">GPT templates (current workspace)</a></p>
+<p><a href="evidence/results/{INTENT_RUN.name}">Raw intent records</a> ·
+<a href="evidence/results/{INTENT_SUMMARY.name}">Intent summary</a> ·
+<a href="evidence/test_data/cases/intent_cases.jsonl">Intent dataset</a> ·
+<a href="evidence/config/intent_runtime_policy.yml">Intent runtime policy snapshot</a> ·
+<a href="evidence/config/gpt_intent_classification.yml">GPT intent template snapshot</a></p>
+<p><a href="evidence/results/execution_gate/{RUN.name}">Raw execution records</a> ·
+<a href="evidence/results/execution_gate/{SUMMARY.name}">Saved summary</a> ·
+<a href="evidence/test_data/execution_gate/cases.jsonl">Draft dataset</a> ·
+<a href="evidence/config/execution_gate_policy.yml">Execution policy snapshot</a> ·
+<a href="evidence/config/execution_gate_prompts.yml">GPT execution template snapshot</a> ·
+<a href="evidence/evaluator/config.json">Deployment and pricing snapshot</a></p>
 <pre>venv\\Scripts\\python.exe -m scripts.build_experiment_report
-venv\\Scripts\\python.exe -m evaluator.execution_gate --evaluate results\\execution_gate\\{RUN.name}</pre>
+venv\\Scripts\\python.exe -m evaluator.execution_gate --evaluate reports\\evidence\\results\\execution_gate\\{RUN.name}</pre>
 <p class="muted">Standalone HTML: embedded SVG/CSS, no external scripts, fonts or network dependencies. The legacy report
 filename is retained so existing bookmarks continue to open the refreshed experiment.</p>
 </main></body></html>"""

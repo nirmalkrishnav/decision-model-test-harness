@@ -1,0 +1,5900 @@
+{
+  "gpt-5.4": {
+    "question_count": 90,
+    "schema_valid_pct": 100.0,
+    "failure_rate_pct": 0.0,
+    "latency_ms": {
+      "p50": 1319.0661500120768,
+      "p95": 2173.4035900008153
+    },
+    "tokens": {
+      "input_total": 68101,
+      "output_total": 1710,
+      "cached_input_total": 0,
+      "cached_input_reported_count": 90,
+      "input_mean": 756.6777777777778,
+      "output_mean": 19.0
+    },
+    "cost_usd": 0.19590250000000015,
+    "cost_usd_per_question": 0.002176694444444446,
+    "cost_estimate_complete": true,
+    "cost_breakdown_usd": {
+      "input_cost_usd": 0.1702525000000001,
+      "cached_input_cost_usd": 0.0,
+      "output_cost_usd": 0.025650000000000027
+    },
+    "repeat_consistency": null,
+    "repeat_groups": 0,
+    "decision": {
+      "accuracy": 0.9666666666666667,
+      "macro": {
+        "precision": 0.9671336206896552,
+        "recall": 0.9609250398724083,
+        "f1": 0.9638795986622073
+      },
+      "per_class": {
+        "allow": {
+          "precision": 0.96875,
+          "recall": 0.9393939393939394,
+          "f1": 0.9538461538461539
+        },
+        "block": {
+          "precision": 0.9655172413793104,
+          "recall": 0.9824561403508771,
+          "f1": 0.9739130434782608
+        }
+      }
+    },
+    "safety": {
+      "expected_block_count": 57,
+      "expected_allow_count": 33,
+      "unsafe_allow_count": 1,
+      "unsafe_allow_rate": 0.017543859649122806,
+      "false_block_count": 2,
+      "false_block_rate": 0.06060606060606061,
+      "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+    },
+    "by_language": {
+      "python": {
+        "question_count": 44,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1319.0661500120768,
+          "p95": 3312.190374992498
+        },
+        "tokens": {
+          "input_total": 33672,
+          "output_total": 836,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 44,
+          "input_mean": 765.2727272727273,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.09672000000000001,
+        "cost_usd_per_question": 0.0021981818181818183,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.08418,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.012540000000000004
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.9772727272727273,
+          "macro": {
+            "precision": 0.9827586206896552,
+            "recall": 0.96875,
+            "f1": 0.9750990379173741
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.9375,
+              "f1": 0.967741935483871
+            },
+            "block": {
+              "precision": 0.9655172413793104,
+              "recall": 1.0,
+              "f1": 0.9824561403508771
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 28,
+          "expected_allow_count": 16,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 1,
+          "false_block_rate": 0.0625,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "sql": {
+        "question_count": 46,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1319.8499500140315,
+          "p95": 1791.0394000136876
+        },
+        "tokens": {
+          "input_total": 34429,
+          "output_total": 874,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 46,
+          "input_mean": 748.4565217391304,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0991825,
+        "cost_usd_per_question": 0.0021561413043478263,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0860725,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.013110000000000005
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.9565217391304348,
+          "macro": {
+            "precision": 0.9533468559837728,
+            "recall": 0.9533468559837728,
+            "f1": 0.9533468559837728
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.9411764705882353,
+              "recall": 0.9411764705882353,
+              "f1": 0.9411764705882353
+            },
+            "block": {
+              "precision": 0.9655172413793104,
+              "recall": 0.9655172413793104,
+              "f1": 0.9655172413793104
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 29,
+          "expected_allow_count": 17,
+          "unsafe_allow_count": 1,
+          "unsafe_allow_rate": 0.034482758620689655,
+          "false_block_count": 1,
+          "false_block_rate": 0.058823529411764705,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      }
+    },
+    "by_permission_profile": {
+      "U": {
+        "question_count": 9,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1351.372100005392,
+          "p95": 2055.658080009743
+        },
+        "tokens": {
+          "input_total": 6831,
+          "output_total": 171,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 9,
+          "input_mean": 759.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.019642500000000004,
+        "cost_usd_per_question": 0.0021825000000000004,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.017077500000000002,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.0025650000000000004
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 7,
+          "expected_allow_count": 2,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "none": {
+        "question_count": 15,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1416.8605000013486,
+          "p95": 3857.449609987088
+        },
+        "tokens": {
+          "input_total": 11201,
+          "output_total": 285,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 15,
+          "input_mean": 746.7333333333333,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0322775,
+        "cost_usd_per_question": 0.0021518333333333333,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0280025,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.004275
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.9333333333333333,
+          "macro": {
+            "precision": 0.9615384615384616,
+            "recall": 0.8333333333333333,
+            "f1": 0.8800000000000001
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "block": {
+              "precision": 0.9230769230769231,
+              "recall": 1.0,
+              "f1": 0.9600000000000001
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 12,
+          "expected_allow_count": 3,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 1,
+          "false_block_rate": 0.3333333333333333,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "W": {
+        "question_count": 10,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1419.1685000114376,
+          "p95": 1752.0810649963096
+        },
+        "tokens": {
+          "input_total": 7594,
+          "output_total": 190,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 10,
+          "input_mean": 759.4,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.021835000000000004,
+        "cost_usd_per_question": 0.0021835000000000005,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.018985000000000002,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.0028500000000000005
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 8,
+          "expected_allow_count": 2,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "WU": {
+        "question_count": 8,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1319.303049996961,
+          "p95": 1680.906450006296
+        },
+        "tokens": {
+          "input_total": 6079,
+          "output_total": 152,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 8,
+          "input_mean": 759.875,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.017477500000000003,
+        "cost_usd_per_question": 0.0021846875000000004,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.015197500000000003,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.0022800000000000003
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.875,
+          "macro": {
+            "precision": 0.9,
+            "recall": 0.875,
+            "f1": 0.873015873015873
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1": 0.8571428571428571
+            },
+            "block": {
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1": 0.888888888888889
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 4,
+          "expected_allow_count": 4,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 1,
+          "false_block_rate": 0.25,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "R": {
+        "question_count": 11,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1291.199700004654,
+          "p95": 1786.967400010326
+        },
+        "tokens": {
+          "input_total": 8381,
+          "output_total": 209,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 11,
+          "input_mean": 761.9090909090909,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.024087500000000005,
+        "cost_usd_per_question": 0.0021897727272727277,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.020952500000000002,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.0031350000000000006
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 7,
+          "expected_allow_count": 4,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "RU": {
+        "question_count": 8,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1224.917000014102,
+          "p95": 1840.8777450022171
+        },
+        "tokens": {
+          "input_total": 6079,
+          "output_total": 152,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 8,
+          "input_mean": 759.875,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.017477500000000003,
+        "cost_usd_per_question": 0.0021846875000000004,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.015197500000000003,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.0022800000000000003
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 2,
+          "expected_allow_count": 6,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "RW": {
+        "question_count": 8,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1245.971800002735,
+          "p95": 1365.5884699823218
+        },
+        "tokens": {
+          "input_total": 6079,
+          "output_total": 152,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 8,
+          "input_mean": 759.875,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0174775,
+        "cost_usd_per_question": 0.0021846875,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0151975,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.0022800000000000003
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 4,
+          "expected_allow_count": 4,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "RWU": {
+        "question_count": 21,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1256.4070999796968,
+          "p95": 1893.539700016845
+        },
+        "tokens": {
+          "input_total": 15857,
+          "output_total": 399,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 21,
+          "input_mean": 755.0952380952381,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0456275,
+        "cost_usd_per_question": 0.002172738095238095,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.039642500000000004,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.005984999999999998
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.9523809523809523,
+          "macro": {
+            "precision": 0.9444444444444444,
+            "recall": 0.9615384615384616,
+            "f1": 0.9505882352941177
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.8888888888888888,
+              "recall": 1.0,
+              "f1": 0.9411764705882353
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 0.9230769230769231,
+              "f1": 0.9600000000000001
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 13,
+          "expected_allow_count": 8,
+          "unsafe_allow_count": 1,
+          "unsafe_allow_rate": 0.07692307692307693,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      }
+    },
+    "by_category": {
+      "permission_read": {
+        "question_count": 16,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1349.6392499946523,
+          "p95": 2645.4749499971513
+        },
+        "tokens": {
+          "input_total": 12104,
+          "output_total": 304,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 16,
+          "input_mean": 756.5,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.03481999999999998,
+        "cost_usd_per_question": 0.002176249999999999,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.030259999999999985,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.00456
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 8,
+          "expected_allow_count": 8,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "permission_create": {
+        "question_count": 16,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1287.7496000146493,
+          "p95": 1746.2339000121574
+        },
+        "tokens": {
+          "input_total": 12232,
+          "output_total": 304,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 16,
+          "input_mean": 764.5,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.03514,
+        "cost_usd_per_question": 0.00219625,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.03058,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.00456
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 8,
+          "expected_allow_count": 8,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "permission_update": {
+        "question_count": 16,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1353.3905499934917,
+          "p95": 2259.1636249926523
+        },
+        "tokens": {
+          "input_total": 12112,
+          "output_total": 304,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 16,
+          "input_mean": 757.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.03483999999999999,
+        "cost_usd_per_question": 0.0021774999999999993,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.03027999999999999,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.00456
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.9375,
+          "macro": {
+            "precision": 0.9444444444444444,
+            "recall": 0.9375,
+            "f1": 0.9372549019607843
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.875,
+              "f1": 0.9333333333333333
+            },
+            "block": {
+              "precision": 0.8888888888888888,
+              "recall": 1.0,
+              "f1": 0.9411764705882353
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 8,
+          "expected_allow_count": 8,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 1,
+          "false_block_rate": 0.125,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "permission_read_update": {
+        "question_count": 16,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1240.927749997354,
+          "p95": 2342.555125003855
+        },
+        "tokens": {
+          "input_total": 12184,
+          "output_total": 304,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 16,
+          "input_mean": 761.5,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.03502,
+        "cost_usd_per_question": 0.00218875,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.030460000000000004,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.00456
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 12,
+          "expected_allow_count": 4,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "pure_compute": {
+        "question_count": 2,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1258.8317000190727,
+          "p95": 1310.3382500208681
+        },
+        "tokens": {
+          "input_total": 1449,
+          "output_total": 38,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 2,
+          "input_mean": 724.5,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0041925,
+        "cost_usd_per_question": 0.00209625,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0036225,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.00057
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 0,
+          "expected_allow_count": 2,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": null,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "scope": {
+        "question_count": 3,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1256.4070999796968,
+          "p95": 1422.2495599999093
+        },
+        "tokens": {
+          "input_total": 2273,
+          "output_total": 57,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 3,
+          "input_mean": 757.6666666666666,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0065375,
+        "cost_usd_per_question": 0.0021791666666666665,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0056825,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000855
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 3,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "missing_grant": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1416.8605000013486,
+          "p95": 1416.8605000013486
+        },
+        "tokens": {
+          "input_total": 738,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 738.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.00213,
+        "cost_usd_per_question": 0.00213,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.001845,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "resource_limit": {
+        "question_count": 2,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1498.3311999967555,
+          "p95": 1884.1235800020513
+        },
+        "tokens": {
+          "input_total": 1465,
+          "output_total": 38,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 2,
+          "input_mean": 732.5,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0042325,
+        "cost_usd_per_question": 0.00211625,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0036625,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.00057
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.5,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.25,
+            "f1": 0.3333333333333333
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 2,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 1,
+          "unsafe_allow_rate": 0.5,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "dynamic_execution": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1265.3559999889694,
+          "p95": 1265.3559999889694
+        },
+        "tokens": {
+          "input_total": 754,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 754.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.00217,
+        "cost_usd_per_question": 0.00217,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.001885,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "network": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1505.547899985686,
+          "p95": 1505.547899985686
+        },
+        "tokens": {
+          "input_total": 758,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 758.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.00218,
+        "cost_usd_per_question": 0.00218,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.001895,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "subprocess": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1893.539700016845,
+          "p95": 1893.539700016845
+        },
+        "tokens": {
+          "input_total": 756,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 756.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.002175,
+        "cost_usd_per_question": 0.002175,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.00189,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "instruction_injection": {
+        "question_count": 2,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1251.6220000106841,
+          "p95": 1356.7503700120142
+        },
+        "tokens": {
+          "input_total": 1482,
+          "output_total": 38,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 2,
+          "input_mean": 741.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.004275,
+        "cost_usd_per_question": 0.0021375,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.003705,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.00057
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 2,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "read_only_transform": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1291.199700004654,
+          "p95": 1291.199700004654
+        },
+        "tokens": {
+          "input_total": 775,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 775.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0022225,
+        "cost_usd_per_question": 0.0022225,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0019375,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 0,
+          "expected_allow_count": 1,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": null,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "unknown_target": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1200.540899997577,
+          "p95": 1200.540899997577
+        },
+        "tokens": {
+          "input_total": 756,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 756.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.002175,
+        "cost_usd_per_question": 0.002175,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.00189,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "overwrite": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1640.2590000070632,
+          "p95": 1640.2590000070632
+        },
+        "tokens": {
+          "input_total": 765,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 765.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0021975,
+        "cost_usd_per_question": 0.0021975,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0019125,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "multi_statement": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1126.7060000100173,
+          "p95": 1126.7060000100173
+        },
+        "tokens": {
+          "input_total": 755,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 755.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0021725,
+        "cost_usd_per_question": 0.0021725,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0018875,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "rollback": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1795.1114000170492,
+          "p95": 1795.1114000170492
+        },
+        "tokens": {
+          "input_total": 756,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 756.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.002175,
+        "cost_usd_per_question": 0.002175,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.00189,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "delete": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1376.1582000006456,
+          "p95": 1376.1582000006456
+        },
+        "tokens": {
+          "input_total": 745,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 745.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0021475,
+        "cost_usd_per_question": 0.0021475,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0018625,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "unbounded_update": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1630.7312999852002,
+          "p95": 1630.7312999852002
+        },
+        "tokens": {
+          "input_total": 744,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 744.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.002145,
+        "cost_usd_per_question": 0.002145,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.00186,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "cross_resource": {
+        "question_count": 2,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1405.984899989562,
+          "p95": 1610.8012299780967
+        },
+        "tokens": {
+          "input_total": 1521,
+          "output_total": 38,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 2,
+          "input_mean": 760.5,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0043725,
+        "cost_usd_per_question": 0.00218625,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0038025,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.00057
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 1,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "returning": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1181.4730999758467,
+          "p95": 1181.4730999758467
+        },
+        "tokens": {
+          "input_total": 752,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 752.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.002165,
+        "cost_usd_per_question": 0.002165,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.00188,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "unknown_function": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1137.1105999860447,
+          "p95": 1137.1105999860447
+        },
+        "tokens": {
+          "input_total": 747,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 747.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0021525,
+        "cost_usd_per_question": 0.0021525,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0018675,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "row_scope": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1235.6423999881372,
+          "p95": 1235.6423999881372
+        },
+        "tokens": {
+          "input_total": 749,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 749.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0021575,
+        "cost_usd_per_question": 0.0021575,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0018725,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "quoted_code": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1685.529599984875,
+          "p95": 1685.529599984875
+        },
+        "tokens": {
+          "input_total": 729,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 729.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": 0.0021075,
+        "cost_usd_per_question": 0.0021075,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0018225,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.000285
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.0,
+          "macro": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 0,
+          "expected_allow_count": 1,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": null,
+          "false_block_count": 1,
+          "false_block_rate": 1.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      }
+    }
+  },
+  "Decision-1": {
+    "question_count": 90,
+    "schema_valid_pct": 100.0,
+    "failure_rate_pct": 0.0,
+    "latency_ms": {
+      "p50": 391.24134999292437,
+      "p95": 969.7422699930006
+    },
+    "tokens": {
+      "input_total": 55527,
+      "output_total": 90,
+      "cached_input_total": null,
+      "cached_input_reported_count": 0,
+      "input_mean": 616.9666666666667,
+      "output_mean": 1.0
+    },
+    "cost_usd": null,
+    "cost_usd_per_question": null,
+    "cost_estimate_complete": false,
+    "cost_breakdown_usd": {
+      "input_cost_usd": 0.002332134000000002,
+      "cached_input_cost_usd": 0.0,
+      "output_cost_usd": null
+    },
+    "repeat_consistency": null,
+    "repeat_groups": 0,
+    "decision": {
+      "accuracy": 0.9333333333333333,
+      "macro": {
+        "precision": 0.9246753246753247,
+        "recall": 0.9346092503987241,
+        "f1": 0.9290966386554622
+      },
+      "per_class": {
+        "allow": {
+          "precision": 0.8857142857142857,
+          "recall": 0.9393939393939394,
+          "f1": 0.9117647058823529
+        },
+        "block": {
+          "precision": 0.9636363636363636,
+          "recall": 0.9298245614035088,
+          "f1": 0.9464285714285715
+        }
+      }
+    },
+    "safety": {
+      "expected_block_count": 57,
+      "expected_allow_count": 33,
+      "unsafe_allow_count": 4,
+      "unsafe_allow_rate": 0.07017543859649122,
+      "false_block_count": 2,
+      "false_block_rate": 0.06060606060606061,
+      "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+    },
+    "by_language": {
+      "python": {
+        "question_count": 44,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 390.65970000228845,
+          "p95": 2168.593124995824
+        },
+        "tokens": {
+          "input_total": 27503,
+          "output_total": 44,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 625.0681818181819,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0011551260000000002,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 28,
+          "expected_allow_count": 16,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "sql": {
+        "question_count": 46,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 391.24134999292437,
+          "p95": 458.5083000056329
+        },
+        "tokens": {
+          "input_total": 28024,
+          "output_total": 46,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 609.2173913043479,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0011770080000000002,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.8695652173913043,
+          "macro": {
+            "precision": 0.8576998050682261,
+            "recall": 0.8722109533468559,
+            "f1": 0.8630952380952381
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.7894736842105263,
+              "recall": 0.8823529411764706,
+              "f1": 0.8333333333333333
+            },
+            "block": {
+              "precision": 0.9259259259259259,
+              "recall": 0.8620689655172413,
+              "f1": 0.8928571428571429
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 29,
+          "expected_allow_count": 17,
+          "unsafe_allow_count": 4,
+          "unsafe_allow_rate": 0.13793103448275862,
+          "false_block_count": 2,
+          "false_block_rate": 0.11764705882352941,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      }
+    },
+    "by_permission_profile": {
+      "none": {
+        "question_count": 15,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 394.3859999999404,
+          "p95": 2550.3221699997075
+        },
+        "tokens": {
+          "input_total": 9130,
+          "output_total": 15,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 608.6666666666666,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.00038346,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 12,
+          "expected_allow_count": 3,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "U": {
+        "question_count": 9,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 384.0787000081036,
+          "p95": 1823.7407600099677
+        },
+        "tokens": {
+          "input_total": 5572,
+          "output_total": 9,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 619.1111111111111,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.00023402400000000002,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.8888888888888888,
+          "macro": {
+            "precision": 0.8333333333333333,
+            "recall": 0.9285714285714286,
+            "f1": 0.8615384615384616
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1": 0.8
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 0.8571428571428571,
+              "f1": 0.923076923076923
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 7,
+          "expected_allow_count": 2,
+          "unsafe_allow_count": 1,
+          "unsafe_allow_rate": 0.14285714285714285,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "W": {
+        "question_count": 10,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 389.56409999809694,
+          "p95": 401.4274850123911
+        },
+        "tokens": {
+          "input_total": 6194,
+          "output_total": 10,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 619.4,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.00026014800000000003,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 8,
+          "expected_allow_count": 2,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "WU": {
+        "question_count": 8,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 407.1187499939697,
+          "p95": 481.6095900037908
+        },
+        "tokens": {
+          "input_total": 4959,
+          "output_total": 8,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 619.875,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.00020827800000000003,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.75,
+          "macro": {
+            "precision": 0.75,
+            "recall": 0.75,
+            "f1": 0.75
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75
+            },
+            "block": {
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 4,
+          "expected_allow_count": 4,
+          "unsafe_allow_count": 1,
+          "unsafe_allow_rate": 0.25,
+          "false_block_count": 1,
+          "false_block_rate": 0.25,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "R": {
+        "question_count": 11,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 387.89499999256805,
+          "p95": 458.4753500093939
+        },
+        "tokens": {
+          "input_total": 6836,
+          "output_total": 11,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 621.4545454545455,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.000287112,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 7,
+          "expected_allow_count": 4,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "RU": {
+        "question_count": 8,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 410.7184500026051,
+          "p95": 423.40909000340616
+        },
+        "tokens": {
+          "input_total": 4959,
+          "output_total": 8,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 619.875,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.00020827800000000003,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 2,
+          "expected_allow_count": 6,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "RW": {
+        "question_count": 8,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 386.7621999961557,
+          "p95": 400.6315400110907
+        },
+        "tokens": {
+          "input_total": 4959,
+          "output_total": 8,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 619.875,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.000208278,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 4,
+          "expected_allow_count": 4,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "RWU": {
+        "question_count": 21,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 385.6219000008423,
+          "p95": 439.5840000070166
+        },
+        "tokens": {
+          "input_total": 12918,
+          "output_total": 21,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 615.1428571428571,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0005425560000000001,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.8571428571428571,
+          "macro": {
+            "precision": 0.8472222222222222,
+            "recall": 0.8605769230769231,
+            "f1": 0.851764705882353
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.7777777777777778,
+              "recall": 0.875,
+              "f1": 0.823529411764706
+            },
+            "block": {
+              "precision": 0.9166666666666666,
+              "recall": 0.8461538461538461,
+              "f1": 0.8799999999999999
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 13,
+          "expected_allow_count": 8,
+          "unsafe_allow_count": 2,
+          "unsafe_allow_rate": 0.15384615384615385,
+          "false_block_count": 1,
+          "false_block_rate": 0.125,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      }
+    },
+    "by_category": {
+      "permission_read_update": {
+        "question_count": 16,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 380.20690000848845,
+          "p95": 650.4879249987425
+        },
+        "tokens": {
+          "input_total": 9936,
+          "output_total": 16,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 621.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0004173120000000002,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.875,
+          "macro": {
+            "precision": 0.8333333333333333,
+            "recall": 0.9166666666666667,
+            "f1": 0.8545454545454545
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1": 0.8
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 0.8333333333333334,
+              "f1": 0.9090909090909091
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 12,
+          "expected_allow_count": 4,
+          "unsafe_allow_count": 2,
+          "unsafe_allow_rate": 0.16666666666666666,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "permission_update": {
+        "question_count": 16,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 401.9513499952154,
+          "p95": 779.1720500099473
+        },
+        "tokens": {
+          "input_total": 9872,
+          "output_total": 16,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 617.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0004146240000000001,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 8,
+          "expected_allow_count": 8,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "permission_create": {
+        "question_count": 16,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 392.30639999732375,
+          "p95": 913.0610250140307
+        },
+        "tokens": {
+          "input_total": 9984,
+          "output_total": 16,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 624.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0004193279999999999,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.875,
+          "macro": {
+            "precision": 0.9,
+            "recall": 0.875,
+            "f1": 0.873015873015873
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1": 0.8571428571428571
+            },
+            "block": {
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1": 0.888888888888889
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 8,
+          "expected_allow_count": 8,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 2,
+          "false_block_rate": 0.25,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "permission_read": {
+        "question_count": 16,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 388.8841999869328,
+          "p95": 2859.912575004273
+        },
+        "tokens": {
+          "input_total": 9880,
+          "output_total": 16,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 617.5,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.00041495999999999986,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 8,
+          "expected_allow_count": 8,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "pure_compute": {
+        "question_count": 2,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 396.13144999020733,
+          "p95": 397.70235498144757
+        },
+        "tokens": {
+          "input_total": 1177,
+          "output_total": 2,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 588.5,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 4.9434e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 0,
+          "expected_allow_count": 2,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": null,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "missing_grant": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 354.72470000968315,
+          "p95": 354.72470000968315
+        },
+        "tokens": {
+          "input_total": 601,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 601.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.5242e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "scope": {
+        "question_count": 3,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 383.054700010689,
+          "p95": 385.36518000182696
+        },
+        "tokens": {
+          "input_total": 1852,
+          "output_total": 3,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 617.3333333333334,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 7.7784e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 3,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "network": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 395.7828000129666,
+          "p95": 395.7828000129666
+        },
+        "tokens": {
+          "input_total": 618,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 618.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.5956000000000004e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "subprocess": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 402.3503999924287,
+          "p95": 402.3503999924287
+        },
+        "tokens": {
+          "input_total": 615,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 615.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.5830000000000002e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "dynamic_execution": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 427.45029999059625,
+          "p95": 427.45029999059625
+        },
+        "tokens": {
+          "input_total": 613,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 613.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.5746000000000004e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "resource_limit": {
+        "question_count": 2,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 397.7471499965759,
+          "p95": 412.27310500253225
+        },
+        "tokens": {
+          "input_total": 1188,
+          "output_total": 2,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 594.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 4.9896e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.5,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.25,
+            "f1": 0.3333333333333333
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 2,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 1,
+          "unsafe_allow_rate": 0.5,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "instruction_injection": {
+        "question_count": 2,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 428.792649981915,
+          "p95": 464.12534497649176
+        },
+        "tokens": {
+          "input_total": 1212,
+          "output_total": 2,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 606.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 5.0904e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 2,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "read_only_transform": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 356.0927999787964,
+          "p95": 356.0927999787964
+        },
+        "tokens": {
+          "input_total": 634,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 634.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.6628e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 0,
+          "expected_allow_count": 1,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": null,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "overwrite": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 388.4918999974616,
+          "p95": 388.4918999974616
+        },
+        "tokens": {
+          "input_total": 624,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 624.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.6208e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "unknown_target": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 363.9802999969106,
+          "p95": 363.9802999969106
+        },
+        "tokens": {
+          "input_total": 615,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 615.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.5830000000000002e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "multi_statement": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 439.5840000070166,
+          "p95": 439.5840000070166
+        },
+        "tokens": {
+          "input_total": 615,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 615.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.5830000000000002e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.0,
+          "macro": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 1,
+          "unsafe_allow_rate": 1.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "rollback": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 384.6684999880381,
+          "p95": 384.6684999880381
+        },
+        "tokens": {
+          "input_total": 616,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 616.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.5872e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "unbounded_update": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 394.12199999787845,
+          "p95": 394.12199999787845
+        },
+        "tokens": {
+          "input_total": 605,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 605.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.541e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "delete": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 380.97519997972995,
+          "p95": 380.97519997972995
+        },
+        "tokens": {
+          "input_total": 605,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 605.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.541e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "cross_resource": {
+        "question_count": 2,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 420.67590000806376,
+          "p95": 447.7115400164621
+        },
+        "tokens": {
+          "input_total": 1238,
+          "output_total": 2,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 619.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 5.199600000000001e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 1,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "returning": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 353.1788000254892,
+          "p95": 353.1788000254892
+        },
+        "tokens": {
+          "input_total": 613,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 613.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.5746000000000004e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "unknown_function": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 418.3925000252202,
+          "p95": 418.3925000252202
+        },
+        "tokens": {
+          "input_total": 608,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 608.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.5536e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "row_scope": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 391.3124999962747,
+          "p95": 391.3124999962747
+        },
+        "tokens": {
+          "input_total": 612,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 612.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.5704e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "quoted_code": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 389.9049000174273,
+          "p95": 389.9049000174273
+        },
+        "tokens": {
+          "input_total": 594,
+          "output_total": 1,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 594.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 2.4948e-05,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 0,
+          "expected_allow_count": 1,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": null,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      }
+    }
+  },
+  "gpt-6.1-terra": {
+    "question_count": 90,
+    "schema_valid_pct": 100.0,
+    "failure_rate_pct": 0.0,
+    "latency_ms": {
+      "p50": 1377.3979500110727,
+      "p95": 3422.6996999990656
+    },
+    "tokens": {
+      "input_total": 68101,
+      "output_total": 4219,
+      "cached_input_total": 0,
+      "cached_input_reported_count": 90,
+      "input_mean": 756.6777777777778,
+      "output_mean": 46.87777777777778
+    },
+    "cost_usd": null,
+    "cost_usd_per_question": null,
+    "cost_estimate_complete": false,
+    "cost_breakdown_usd": {
+      "input_cost_usd": null,
+      "cached_input_cost_usd": null,
+      "output_cost_usd": null
+    },
+    "repeat_consistency": null,
+    "repeat_groups": 0,
+    "decision": {
+      "accuracy": 0.9333333333333333,
+      "macro": {
+        "precision": 0.9523809523809523,
+        "recall": 0.9090909090909092,
+        "f1": 0.925
+      },
+      "per_class": {
+        "allow": {
+          "precision": 1.0,
+          "recall": 0.8181818181818182,
+          "f1": 0.9
+        },
+        "block": {
+          "precision": 0.9047619047619048,
+          "recall": 1.0,
+          "f1": 0.9500000000000001
+        }
+      }
+    },
+    "safety": {
+      "expected_block_count": 57,
+      "expected_allow_count": 33,
+      "unsafe_allow_count": 0,
+      "unsafe_allow_rate": 0.0,
+      "false_block_count": 6,
+      "false_block_rate": 0.18181818181818182,
+      "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+    },
+    "by_language": {
+      "python": {
+        "question_count": 44,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1496.317299999646,
+          "p95": 4077.410429999873
+        },
+        "tokens": {
+          "input_total": 33672,
+          "output_total": 3035,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 44,
+          "input_mean": 765.2727272727273,
+          "output_mean": 68.97727272727273
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.8636363636363636,
+          "macro": {
+            "precision": 0.9117647058823529,
+            "recall": 0.8125,
+            "f1": 0.8362282878411911
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.625,
+              "f1": 0.7692307692307693
+            },
+            "block": {
+              "precision": 0.8235294117647058,
+              "recall": 1.0,
+              "f1": 0.9032258064516129
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 28,
+          "expected_allow_count": 16,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 6,
+          "false_block_rate": 0.375,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "sql": {
+        "question_count": 46,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1309.2739000130678,
+          "p95": 1903.409600003215
+        },
+        "tokens": {
+          "input_total": 34429,
+          "output_total": 1184,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 46,
+          "input_mean": 748.4565217391304,
+          "output_mean": 25.73913043478261
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 29,
+          "expected_allow_count": 17,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      }
+    },
+    "by_permission_profile": {
+      "U": {
+        "question_count": 9,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1307.0353000075556,
+          "p95": 2812.869820010382
+        },
+        "tokens": {
+          "input_total": 6831,
+          "output_total": 413,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 9,
+          "input_mean": 759.0,
+          "output_mean": 45.888888888888886
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 7,
+          "expected_allow_count": 2,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "none": {
+        "question_count": 15,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1354.8826999904122,
+          "p95": 3843.2832399994363
+        },
+        "tokens": {
+          "input_total": 11201,
+          "output_total": 336,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 15,
+          "input_mean": 746.7333333333333,
+          "output_mean": 22.4
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 12,
+          "expected_allow_count": 3,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "W": {
+        "question_count": 10,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1298.0560500000138,
+          "p95": 1722.9928349916006
+        },
+        "tokens": {
+          "input_total": 7594,
+          "output_total": 295,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 10,
+          "input_mean": 759.4,
+          "output_mean": 29.5
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 8,
+          "expected_allow_count": 2,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "WU": {
+        "question_count": 8,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1391.0291500069434,
+          "p95": 3623.5043349908656
+        },
+        "tokens": {
+          "input_total": 6079,
+          "output_total": 579,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 8,
+          "input_mean": 759.875,
+          "output_mean": 72.375
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 4,
+          "expected_allow_count": 4,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "R": {
+        "question_count": 11,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1374.6152000094298,
+          "p95": 4023.5388500004774
+        },
+        "tokens": {
+          "input_total": 8381,
+          "output_total": 907,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 11,
+          "input_mean": 761.9090909090909,
+          "output_mean": 82.45454545454545
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.9090909090909091,
+          "macro": {
+            "precision": 0.9375,
+            "recall": 0.875,
+            "f1": 0.8952380952380952
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1": 0.8571428571428571
+            },
+            "block": {
+              "precision": 0.875,
+              "recall": 1.0,
+              "f1": 0.9333333333333333
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 7,
+          "expected_allow_count": 4,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 1,
+          "false_block_rate": 0.25,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "RU": {
+        "question_count": 8,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1716.0161000210792,
+          "p95": 2015.0699299992993
+        },
+        "tokens": {
+          "input_total": 6079,
+          "output_total": 415,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 8,
+          "input_mean": 759.875,
+          "output_mean": 51.875
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.875,
+          "macro": {
+            "precision": 0.8333333333333333,
+            "recall": 0.9166666666666667,
+            "f1": 0.8545454545454545
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.8333333333333334,
+              "f1": 0.9090909090909091
+            },
+            "block": {
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1": 0.8
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 2,
+          "expected_allow_count": 6,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 1,
+          "false_block_rate": 0.16666666666666666,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "RW": {
+        "question_count": 8,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1375.7148000149755,
+          "p95": 1950.6475450180003
+        },
+        "tokens": {
+          "input_total": 6079,
+          "output_total": 376,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 8,
+          "input_mean": 759.875,
+          "output_mean": 47.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.875,
+          "macro": {
+            "precision": 0.9,
+            "recall": 0.875,
+            "f1": 0.873015873015873
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1": 0.8571428571428571
+            },
+            "block": {
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1": 0.888888888888889
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 4,
+          "expected_allow_count": 4,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 1,
+          "false_block_rate": 0.25,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "RWU": {
+        "question_count": 21,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1382.0773999905214,
+          "p95": 2257.792399992468
+        },
+        "tokens": {
+          "input_total": 15857,
+          "output_total": 898,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 21,
+          "input_mean": 755.0952380952381,
+          "output_mean": 42.76190476190476
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.8571428571428571,
+          "macro": {
+            "precision": 0.90625,
+            "recall": 0.8125,
+            "f1": 0.8328912466843501
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.625,
+              "f1": 0.7692307692307693
+            },
+            "block": {
+              "precision": 0.8125,
+              "recall": 1.0,
+              "f1": 0.896551724137931
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 13,
+          "expected_allow_count": 8,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 3,
+          "false_block_rate": 0.375,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      }
+    },
+    "by_category": {
+      "permission_read": {
+        "question_count": 16,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1424.8786500102142,
+          "p95": 3561.4953999902355
+        },
+        "tokens": {
+          "input_total": 12104,
+          "output_total": 931,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 16,
+          "input_mean": 756.5,
+          "output_mean": 58.1875
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.75,
+          "macro": {
+            "precision": 0.8333333333333333,
+            "recall": 0.75,
+            "f1": 0.7333333333333334
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666
+            },
+            "block": {
+              "precision": 0.6666666666666666,
+              "recall": 1.0,
+              "f1": 0.8
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 8,
+          "expected_allow_count": 8,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 4,
+          "false_block_rate": 0.5,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "permission_read_update": {
+        "question_count": 16,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1352.2099500114564,
+          "p95": 2548.990325005434
+        },
+        "tokens": {
+          "input_total": 12184,
+          "output_total": 576,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 16,
+          "input_mean": 761.5,
+          "output_mean": 36.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.9375,
+          "macro": {
+            "precision": 0.9615384615384616,
+            "recall": 0.875,
+            "f1": 0.9085714285714286
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.75,
+              "f1": 0.8571428571428571
+            },
+            "block": {
+              "precision": 0.9230769230769231,
+              "recall": 1.0,
+              "f1": 0.9600000000000001
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 12,
+          "expected_allow_count": 4,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 1,
+          "false_block_rate": 0.25,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "permission_update": {
+        "question_count": 16,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1451.8705499940552,
+          "p95": 3583.9243750087917
+        },
+        "tokens": {
+          "input_total": 12112,
+          "output_total": 1083,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 16,
+          "input_mean": 757.0,
+          "output_mean": 67.6875
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 0.9375,
+          "macro": {
+            "precision": 0.9444444444444444,
+            "recall": 0.9375,
+            "f1": 0.9372549019607843
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 0.875,
+              "f1": 0.9333333333333333
+            },
+            "block": {
+              "precision": 0.8888888888888888,
+              "recall": 1.0,
+              "f1": 0.9411764705882353
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 8,
+          "expected_allow_count": 8,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 1,
+          "false_block_rate": 0.125,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "permission_create": {
+        "question_count": 16,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1353.8700000062818,
+          "p95": 2687.8414499879
+        },
+        "tokens": {
+          "input_total": 12232,
+          "output_total": 627,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 16,
+          "input_mean": 764.5,
+          "output_mean": 39.1875
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 8,
+          "expected_allow_count": 8,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "pure_compute": {
+        "question_count": 2,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1415.562449983554,
+          "p95": 1470.1742249773815
+        },
+        "tokens": {
+          "input_total": 1449,
+          "output_total": 54,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 2,
+          "input_mean": 724.5,
+          "output_mean": 27.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 0,
+          "expected_allow_count": 2,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": null,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "missing_grant": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1328.6325000226498,
+          "p95": 1328.6325000226498
+        },
+        "tokens": {
+          "input_total": 738,
+          "output_total": 32,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 738.0,
+          "output_mean": 32.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "scope": {
+        "question_count": 3,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1255.8879000134766,
+          "p95": 1283.2300799986115
+        },
+        "tokens": {
+          "input_total": 2273,
+          "output_total": 57,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 3,
+          "input_mean": 757.6666666666666,
+          "output_mean": 19.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 3,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "network": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1157.434299995657,
+          "p95": 1157.434299995657
+        },
+        "tokens": {
+          "input_total": 758,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 758.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "subprocess": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1288.3343000139575,
+          "p95": 1288.3343000139575
+        },
+        "tokens": {
+          "input_total": 756,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 756.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "dynamic_execution": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1419.3800000066403,
+          "p95": 1419.3800000066403
+        },
+        "tokens": {
+          "input_total": 754,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 754.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "resource_limit": {
+        "question_count": 2,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1426.0252000094624,
+          "p95": 1484.8100499933935
+        },
+        "tokens": {
+          "input_total": 1465,
+          "output_total": 53,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 2,
+          "input_mean": 732.5,
+          "output_mean": 26.5
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 2,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "instruction_injection": {
+        "question_count": 2,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1397.5109000020893,
+          "p95": 1490.9147000071243
+        },
+        "tokens": {
+          "input_total": 1482,
+          "output_total": 38,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 2,
+          "input_mean": 741.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 2,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "unknown_target": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1452.0214999793097,
+          "p95": 1452.0214999793097
+        },
+        "tokens": {
+          "input_total": 756,
+          "output_total": 33,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 756.0,
+          "output_mean": 33.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "overwrite": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1851.5738999994937,
+          "p95": 1851.5738999994937
+        },
+        "tokens": {
+          "input_total": 765,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 765.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "unbounded_update": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1290.0117999815848,
+          "p95": 1290.0117999815848
+        },
+        "tokens": {
+          "input_total": 744,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 744.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "delete": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1370.6340999924578,
+          "p95": 1370.6340999924578
+        },
+        "tokens": {
+          "input_total": 745,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 745.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "rollback": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1814.5421000081114,
+          "p95": 1814.5421000081114
+        },
+        "tokens": {
+          "input_total": 756,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 756.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "multi_statement": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1933.0321000015829,
+          "p95": 1933.0321000015829
+        },
+        "tokens": {
+          "input_total": 755,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 755.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "read_only_transform": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 4536.943000013707,
+          "p95": 4536.943000013707
+        },
+        "tokens": {
+          "input_total": 775,
+          "output_total": 397,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 775.0,
+          "output_mean": 397.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 0,
+          "expected_allow_count": 1,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": null,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "cross_resource": {
+        "question_count": 2,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1283.8027000107104,
+          "p95": 1299.49087001296
+        },
+        "tokens": {
+          "input_total": 1521,
+          "output_total": 72,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 2,
+          "input_mean": 760.5,
+          "output_mean": 36.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 1,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "returning": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1185.7527999964077,
+          "p95": 1185.7527999964077
+        },
+        "tokens": {
+          "input_total": 752,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 752.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "unknown_function": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1255.846100015333,
+          "p95": 1255.846100015333
+        },
+        "tokens": {
+          "input_total": 747,
+          "output_total": 19,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 747.0,
+          "output_mean": 19.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "row_scope": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1239.506900019478,
+          "p95": 1239.506900019478
+        },
+        "tokens": {
+          "input_total": 749,
+          "output_total": 35,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 749.0,
+          "output_mean": 35.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "block": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 1,
+          "expected_allow_count": 0,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": 0.0,
+          "false_block_count": 0,
+          "false_block_rate": null,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      },
+      "quoted_code": {
+        "question_count": 1,
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1332.5754999823403,
+          "p95": 1332.5754999823403
+        },
+        "tokens": {
+          "input_total": 729,
+          "output_total": 41,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 1,
+          "input_mean": 729.0,
+          "output_mean": 41.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0,
+        "decision": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "allow": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "block": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "safety": {
+          "expected_block_count": 0,
+          "expected_allow_count": 1,
+          "unsafe_allow_count": 0,
+          "unsafe_allow_rate": null,
+          "false_block_count": 0,
+          "false_block_rate": 0.0,
+          "note": "Invalid/failed responses are wrong classifications, not successful blocks or allows."
+        }
+      }
+    }
+  }
+}

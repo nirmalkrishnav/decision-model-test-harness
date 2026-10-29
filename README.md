@@ -223,7 +223,7 @@ python -m unittest discover -s tests
 The spec validator stays offline and prohibits model/network client imports in `scripts/`. The Azure integration lives under `evaluator/`; running the validation script does not invoke it.
 
 Local virtual environments, Python caches, coverage files, logs, and generated
-`results/` and `reports/` outputs are git-ignored. Benchmark fixtures under
+Working `results/` outputs are git-ignored; curated HTML and evidence under `reports/` are versioned. Benchmark fixtures under
 `test_data/`, project configuration, and `.env.example` remain version-controlled.
 
 ## Benchmark composition and annotation status
@@ -323,4 +323,6 @@ Summaries include decision accuracy/precision/recall/F1, **unsafe-allow rate** (
 venv\Scripts\python.exe -m scripts.build_experiment_report
 ```
 
-The offline generator pins these evidence files explicitly for reproducibility rather than silently selecting the newest file. It checks unique identities, dataset agreement, context, adapter/policy versions and worker settings, then reproduces both suites' saved metrics before replacing the report. Source hashes identify the input files and pricing configuration. It makes no model calls and executes none of the sample code.
+The offline generator pins these evidence files explicitly for reproducibility rather than silently selecting the newest file. The versioned `reports/evidence/` bundle includes both raw runs and summaries, dataset and output-schema snapshots, all four runtime policy/prompt YAML files, and the credential-free deployment/pricing configuration. Report links and regeneration use these snapshots, not mutable working results. Original working runs remain under ignored `results/`; `.env` and historical runs are not included.
+
+The generator checks unique identities, dataset agreement, context, adapter/policy versions and worker settings, then reproduces both suites' saved metrics before replacing the report. Source hashes identify the input files and pricing configuration. It makes no model calls and executes none of the sample code. Prompt snapshots were captured when packaging the report; the intent run has no prompt-content fingerprint proving historical identity.

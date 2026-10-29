@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["test_case_id", "decision"],
+  "properties": {
+    "test_case_id": {"type": "string", "pattern": "^EXEC-[0-9]{3}$"},
+    "decision": {"enum": ["allow", "block"]}
+  }
+}

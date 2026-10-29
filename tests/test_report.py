@@ -1,13 +1,32 @@
 import unittest
 from copy import deepcopy
+from html.parser import HTMLParser
 from unittest.mock import patch
 
 from scripts.build_experiment_report import (
-    INTENT_RUN, RUN, load_evidence, load_intent_evidence, render,
+    INTENT_RUN, OUTPUT, RUN, load_evidence, load_intent_evidence, render,
 )
 
 
 class ExperimentReportTests(unittest.TestCase):
+    def test_report_links_stay_inside_the_archived_bundle(self):
+        class Links(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.links = []
+
+            def handle_starttag(self, tag, attrs):
+                if tag == "a":
+                    self.links.extend(value for key, value in attrs if key == "href")
+
+        parser = Links()
+        parser.feed(render())
+        self.assertGreaterEqual(len(parser.links), 10)
+        for link in parser.links:
+            with self.subTest(link=link):
+                self.assertTrue(link.startswith("evidence/"))
+                self.assertTrue((OUTPUT.parent / link).is_file())
+
     def test_completed_run_reproduces_and_renders_safety_context(self):
         records, cases, models, grouped, scores = load_evidence()
         self.assertEqual(len(records), 270)

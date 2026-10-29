@@ -1,0 +1,1982 @@
+{
+  "gpt-5.4": {
+    "question_count": 155,
+    "intent": {
+      "accuracy": 0.9935483870967742,
+      "macro": {
+        "precision": 0.9888888888888889,
+        "recall": 0.9983870967741936,
+        "f1": 0.9933046389287422
+      },
+      "per_class": {
+        "performance_analysis": {
+          "precision": 1.0,
+          "recall": 0.9838709677419355,
+          "f1": 0.991869918699187
+        },
+        "promotion_analysis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "pricing_analysis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "distribution_analysis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "assortment_analysis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "comparison": {
+          "precision": 0.8888888888888888,
+          "recall": 1.0,
+          "f1": 0.9411764705882353
+        },
+        "trend_analysis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "forecast": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "recommendation": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "unsupported": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      }
+    },
+    "entities": {
+      "exact_match": null,
+      "micro": null,
+      "per_type": null,
+      "evaluated_count": 0,
+      "excluded_count": 155
+    },
+    "schema_valid_pct": 100.0,
+    "failure_rate_pct": 0.0,
+    "latency_ms": {
+      "p50": 1316.0683999885805,
+      "p95": 2153.9287400082662
+    },
+    "tokens": {
+      "input_total": 118774,
+      "output_total": 3241,
+      "cached_input_total": 0,
+      "cached_input_reported_count": 155,
+      "input_mean": 766.2838709677419,
+      "output_mean": 20.90967741935484
+    },
+    "cost_usd": 0.3455500000000002,
+    "cost_usd_per_question": 0.0022293548387096788,
+    "cost_estimate_complete": true,
+    "cost_breakdown_usd": {
+      "input_cost_usd": 0.29693500000000006,
+      "cached_input_cost_usd": 0.0,
+      "output_cost_usd": 0.04861500000000012
+    },
+    "repeat_consistency": null,
+    "repeat_groups": 0,
+    "by_category": {
+      "simple_intent": {
+        "question_count": 40,
+        "intent": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "distribution_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "assortment_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "forecast": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "recommendation": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 40
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1377.3338000028161,
+          "p95": 3458.173154987161
+        },
+        "tokens": {
+          "input_total": 28340,
+          "output_total": 845,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 40,
+          "input_mean": 708.5,
+          "output_mean": 21.125
+        },
+        "cost_usd": 0.08352499999999997,
+        "cost_usd_per_question": 0.0020881249999999993,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.07084999999999998,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.012674999999999994
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "ambiguous_questions": {
+        "question_count": 25,
+        "intent": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.1,
+            "recall": 0.1,
+            "f1": 0.1
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "promotion_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "pricing_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "distribution_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "forecast": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "recommendation": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 25
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1359.338200010825,
+          "p95": 2032.2776000073634
+        },
+        "tokens": {
+          "input_total": 17675,
+          "output_total": 525,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 25,
+          "input_mean": 707.0,
+          "output_mean": 21.0
+        },
+        "cost_usd": 0.0520625,
+        "cost_usd_per_question": 0.0020824999999999997,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0441875,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.007875000000000002
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "multi_intent": {
+        "question_count": 25,
+        "intent": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "distribution_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "trend_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "forecast": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "recommendation": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 25
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1258.9866999769583,
+          "p95": 1943.879000004381
+        },
+        "tokens": {
+          "input_total": 17820,
+          "output_total": 515,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 25,
+          "input_mean": 712.8,
+          "output_mean": 20.6
+        },
+        "cost_usd": 0.052275000000000016,
+        "cost_usd_per_question": 0.002091000000000001,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.04455000000000001,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.007725000000000001
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "multi_turn_context": {
+        "question_count": 30,
+        "intent": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.4,
+            "recall": 0.4,
+            "f1": 0.4
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "distribution_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "trend_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "forecast": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "recommendation": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 30
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1292.5120500003686,
+          "p95": 1542.8781050111863
+        },
+        "tokens": {
+          "input_total": 30048,
+          "output_total": 627,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 30,
+          "input_mean": 1001.6,
+          "output_mean": 20.9
+        },
+        "cost_usd": 0.08452499999999999,
+        "cost_usd_per_question": 0.0028174999999999997,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.07511999999999999,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.009404999999999998
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "paraphrases": {
+        "question_count": 20,
+        "intent": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "distribution_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "forecast": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "recommendation": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 20
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1301.4788500149734,
+          "p95": 1619.047770019097
+        },
+        "tokens": {
+          "input_total": 14219,
+          "output_total": 420,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 20,
+          "input_mean": 710.95,
+          "output_mean": 21.0
+        },
+        "cost_usd": 0.041847499999999996,
+        "cost_usd_per_question": 0.0020923749999999996,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.035547499999999996,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.006300000000000002
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "adversarial_boundary": {
+        "question_count": 15,
+        "intent": {
+          "accuracy": 0.9333333333333333,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.4857142857142857,
+            "f1": 0.4923076923076923
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 0.8571428571428571,
+              "f1": 0.923076923076923
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "distribution_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "forecast": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "recommendation": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "unsupported": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 15
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1377.2044999932405,
+          "p95": 1647.829070003354
+        },
+        "tokens": {
+          "input_total": 10672,
+          "output_total": 309,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 15,
+          "input_mean": 711.4666666666667,
+          "output_mean": 20.6
+        },
+        "cost_usd": 0.03131500000000001,
+        "cost_usd_per_question": 0.0020876666666666674,
+        "cost_estimate_complete": true,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.026680000000000006,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": 0.004635000000000001
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      }
+    }
+  },
+  "Decision-1": {
+    "question_count": 155,
+    "intent": {
+      "accuracy": 0.8903225806451613,
+      "macro": {
+        "precision": 0.8959899749373433,
+        "recall": 0.9109008822718501,
+        "f1": 0.8847044817927171
+      },
+      "per_class": {
+        "performance_analysis": {
+          "precision": 0.9122807017543859,
+          "recall": 0.8387096774193549,
+          "f1": 0.8739495798319329
+        },
+        "promotion_analysis": {
+          "precision": 1.0,
+          "recall": 0.9444444444444444,
+          "f1": 0.9714285714285714
+        },
+        "pricing_analysis": {
+          "precision": 1.0,
+          "recall": 0.9230769230769231,
+          "f1": 0.9600000000000001
+        },
+        "distribution_analysis": {
+          "precision": 1.0,
+          "recall": 0.7777777777777778,
+          "f1": 0.8750000000000001
+        },
+        "assortment_analysis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "comparison": {
+          "precision": 0.7142857142857143,
+          "recall": 0.625,
+          "f1": 0.6666666666666666
+        },
+        "trend_analysis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "forecast": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "recommendation": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "unsupported": {
+          "precision": 0.3333333333333333,
+          "recall": 1.0,
+          "f1": 0.5
+        }
+      }
+    },
+    "entities": {
+      "exact_match": null,
+      "micro": null,
+      "per_type": null,
+      "evaluated_count": 0,
+      "excluded_count": 155
+    },
+    "schema_valid_pct": 100.0,
+    "failure_rate_pct": 0.0,
+    "latency_ms": {
+      "p50": 404.41429999191314,
+      "p95": 554.1904300072929
+    },
+    "tokens": {
+      "input_total": 125111,
+      "output_total": 155,
+      "cached_input_total": null,
+      "cached_input_reported_count": 0,
+      "input_mean": 807.1677419354838,
+      "output_mean": 1.0
+    },
+    "cost_usd": null,
+    "cost_usd_per_question": null,
+    "cost_estimate_complete": false,
+    "cost_breakdown_usd": {
+      "input_cost_usd": 0.005254661999999998,
+      "cached_input_cost_usd": 0.0,
+      "output_cost_usd": null
+    },
+    "repeat_consistency": null,
+    "repeat_groups": 0,
+    "by_category": {
+      "simple_intent": {
+        "question_count": 40,
+        "intent": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "distribution_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "assortment_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "forecast": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "recommendation": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 40
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 409.1927000117721,
+          "p95": 2195.5810999788796
+        },
+        "tokens": {
+          "input_total": 30080,
+          "output_total": 40,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 752.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0012633600000000005,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "ambiguous_questions": {
+        "question_count": 25,
+        "intent": {
+          "accuracy": 0.64,
+          "macro": {
+            "precision": 0.1,
+            "recall": 0.064,
+            "f1": 0.07804878048780486
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 0.64,
+              "f1": 0.7804878048780487
+            },
+            "promotion_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "pricing_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "distribution_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "forecast": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "recommendation": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 25
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 400.43430001242086,
+          "p95": 488.09875999577343
+        },
+        "tokens": {
+          "input_total": 18762,
+          "output_total": 25,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 750.48,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0007880039999999999,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "multi_intent": {
+        "question_count": 25,
+        "intent": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "distribution_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "trend_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "forecast": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "recommendation": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 25
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 402.0033999986481,
+          "p95": 453.61543998587877
+        },
+        "tokens": {
+          "input_total": 18900,
+          "output_total": 25,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 756.0,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0007938,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "multi_turn_context": {
+        "question_count": 30,
+        "intent": {
+          "accuracy": 0.8666666666666667,
+          "macro": {
+            "precision": 0.284,
+            "recall": 0.26666666666666666,
+            "f1": 0.271304347826087
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 0.84,
+              "recall": 1.0,
+              "f1": 0.9130434782608696
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 0.6666666666666666,
+              "f1": 0.8
+            },
+            "pricing_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "distribution_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "forecast": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "recommendation": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 30
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 397.7104999939911,
+          "p95": 500.9227800124789
+        },
+        "tokens": {
+          "input_total": 30957,
+          "output_total": 30,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 1031.9,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0013001940000000004,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "paraphrases": {
+        "question_count": 20,
+        "intent": {
+          "accuracy": 0.9,
+          "macro": {
+            "precision": 0.48,
+            "recall": 0.45,
+            "f1": 0.45555555555555555
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 0.8,
+              "recall": 1.0,
+              "f1": 0.888888888888889
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "distribution_analysis": {
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6666666666666666
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "forecast": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "recommendation": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 20
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 434.5166499988409,
+          "p95": 512.1648050131625
+        },
+        "tokens": {
+          "input_total": 15084,
+          "output_total": 20,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 754.2,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.000633528,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "adversarial_boundary": {
+        "question_count": 15,
+        "intent": {
+          "accuracy": 0.8666666666666667,
+          "macro": {
+            "precision": 0.4,
+            "recall": 0.38571428571428573,
+            "f1": 0.3923076923076923
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 0.8571428571428571,
+              "f1": 0.923076923076923
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "distribution_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "forecast": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "recommendation": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "unsupported": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 15
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 398.81829998921603,
+          "p95": 565.6546300073387
+        },
+        "tokens": {
+          "input_total": 11328,
+          "output_total": 15,
+          "cached_input_total": null,
+          "cached_input_reported_count": 0,
+          "input_mean": 755.2,
+          "output_mean": 1.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": 0.0004757760000000001,
+          "cached_input_cost_usd": 0.0,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      }
+    }
+  },
+  "gpt-6.1-terra": {
+    "question_count": 155,
+    "intent": {
+      "accuracy": 0.9935483870967742,
+      "macro": {
+        "precision": 0.9888888888888889,
+        "recall": 0.9923076923076923,
+        "f1": 0.9901176470588235
+      },
+      "per_class": {
+        "performance_analysis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "promotion_analysis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "pricing_analysis": {
+          "precision": 1.0,
+          "recall": 0.9230769230769231,
+          "f1": 0.9600000000000001
+        },
+        "distribution_analysis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "assortment_analysis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "comparison": {
+          "precision": 0.8888888888888888,
+          "recall": 1.0,
+          "f1": 0.9411764705882353
+        },
+        "trend_analysis": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "forecast": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "recommendation": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        },
+        "unsupported": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0
+        }
+      }
+    },
+    "entities": {
+      "exact_match": null,
+      "micro": null,
+      "per_type": null,
+      "evaluated_count": 0,
+      "excluded_count": 155
+    },
+    "schema_valid_pct": 100.0,
+    "failure_rate_pct": 0.0,
+    "latency_ms": {
+      "p50": 1427.3997000127565,
+      "p95": 2137.9361699946453
+    },
+    "tokens": {
+      "input_total": 118774,
+      "output_total": 4553,
+      "cached_input_total": 0,
+      "cached_input_reported_count": 155,
+      "input_mean": 766.2838709677419,
+      "output_mean": 29.374193548387098
+    },
+    "cost_usd": null,
+    "cost_usd_per_question": null,
+    "cost_estimate_complete": false,
+    "cost_breakdown_usd": {
+      "input_cost_usd": null,
+      "cached_input_cost_usd": null,
+      "output_cost_usd": null
+    },
+    "repeat_consistency": null,
+    "repeat_groups": 0,
+    "by_category": {
+      "simple_intent": {
+        "question_count": 40,
+        "intent": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.8,
+            "recall": 0.8,
+            "f1": 0.8
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "distribution_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "assortment_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "forecast": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "recommendation": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 40
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1535.803799997666,
+          "p95": 3256.9029450038206
+        },
+        "tokens": {
+          "input_total": 28340,
+          "output_total": 932,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 40,
+          "input_mean": 708.5,
+          "output_mean": 23.3
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "ambiguous_questions": {
+        "question_count": 25,
+        "intent": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.1,
+            "recall": 0.1,
+            "f1": 0.1
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "promotion_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "pricing_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "distribution_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "forecast": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "recommendation": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 25
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1458.1828000082169,
+          "p95": 2114.2615399963684
+        },
+        "tokens": {
+          "input_total": 17675,
+          "output_total": 701,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 25,
+          "input_mean": 707.0,
+          "output_mean": 28.04
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "multi_intent": {
+        "question_count": 25,
+        "intent": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "distribution_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "trend_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "forecast": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "recommendation": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 25
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1369.834900018759,
+          "p95": 1873.658779996913
+        },
+        "tokens": {
+          "input_total": 17820,
+          "output_total": 900,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 25,
+          "input_mean": 712.8,
+          "output_mean": 36.0
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "multi_turn_context": {
+        "question_count": 30,
+        "intent": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.4,
+            "recall": 0.4,
+            "f1": 0.4
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "distribution_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "trend_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "forecast": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "recommendation": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 30
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1535.4397500050254,
+          "p95": 1784.1773150110384
+        },
+        "tokens": {
+          "input_total": 30048,
+          "output_total": 1042,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 30,
+          "input_mean": 1001.6,
+          "output_mean": 34.733333333333334
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "paraphrases": {
+        "question_count": 20,
+        "intent": {
+          "accuracy": 1.0,
+          "macro": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1": 0.5
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "distribution_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "forecast": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "recommendation": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "unsupported": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 20
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1225.8183999947505,
+          "p95": 1618.3392200007802
+        },
+        "tokens": {
+          "input_total": 14219,
+          "output_total": 433,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 20,
+          "input_mean": 710.95,
+          "output_mean": 21.65
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      },
+      "adversarial_boundary": {
+        "question_count": 15,
+        "intent": {
+          "accuracy": 0.9333333333333333,
+          "macro": {
+            "precision": 0.4,
+            "recall": 0.4,
+            "f1": 0.4
+          },
+          "per_class": {
+            "performance_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "promotion_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "pricing_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "distribution_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "assortment_analysis": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comparison": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "trend_analysis": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "forecast": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "recommendation": {
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "unsupported": {
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            }
+          }
+        },
+        "entities": {
+          "exact_match": null,
+          "micro": null,
+          "per_type": null,
+          "evaluated_count": 0,
+          "excluded_count": 15
+        },
+        "schema_valid_pct": 100.0,
+        "failure_rate_pct": 0.0,
+        "latency_ms": {
+          "p50": 1408.286699996097,
+          "p95": 2022.0447299827354
+        },
+        "tokens": {
+          "input_total": 10672,
+          "output_total": 545,
+          "cached_input_total": 0,
+          "cached_input_reported_count": 15,
+          "input_mean": 711.4666666666667,
+          "output_mean": 36.333333333333336
+        },
+        "cost_usd": null,
+        "cost_usd_per_question": null,
+        "cost_estimate_complete": false,
+        "cost_breakdown_usd": {
+          "input_cost_usd": null,
+          "cached_input_cost_usd": null,
+          "output_cost_usd": null
+        },
+        "repeat_consistency": null,
+        "repeat_groups": 0
+      }
+    }
+  }
+}

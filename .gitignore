@@ -19,9 +19,8 @@ __pycache__/
 htmlcov/
 coverage.xml
 
-# Generated benchmark outputs (not test_data fixtures)
+# Working benchmark outputs; curated report bundles are versioned
 /results/
-/reports/
 
 # Local logs and operating-system metadata
 *.log

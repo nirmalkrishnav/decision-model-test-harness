@@ -1,0 +1,2 @@
+# Preserve report evidence bytes so published SHA-256 fingerprints survive checkout.
+reports/** -text

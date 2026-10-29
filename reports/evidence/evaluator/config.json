@@ -1,0 +1,19 @@
+{
+  "deployment_names": [
+    "gpt-5.4",
+    "Decision-1",
+    "gpt-6.1-terra"
+  ],
+  "repeat_count": 1,
+  "pricing_usd_per_1m_tokens": {
+    "gpt-5.4": {
+      "input_usd_per_1m_tokens": 2.5,
+      "output_usd_per_1m_tokens": 15.0,
+      "cached_input_usd_per_1m_tokens": 0.25
+    },
+    "Decision-1": {
+      "input_usd_per_1m_tokens": 0.042,
+      "output_usd_per_1m_tokens": null
+    }
+  }
+}
